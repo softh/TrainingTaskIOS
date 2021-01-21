@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		BF0FD65C25B9F34D006D4E81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD65B25B9F34D006D4E81 /* AppDelegate.swift */; };
 		BF0FD65E25B9F34D006D4E81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD65D25B9F34D006D4E81 /* SceneDelegate.swift */; };
-		BF0FD66025B9F34D006D4E81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD65F25B9F34D006D4E81 /* ViewController.swift */; };
-		BF0FD66325B9F34D006D4E81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD66125B9F34D006D4E81 /* Main.storyboard */; };
 		BF0FD66525B9F34E006D4E81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD66425B9F34E006D4E81 /* Assets.xcassets */; };
 		BF0FD66825B9F34E006D4E81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD66625B9F34E006D4E81 /* LaunchScreen.storyboard */; };
+		BF0FD67F25B9FE38006D4E81 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD67D25B9FE38006D4E81 /* ConverterViewController.swift */; };
+		BF0FD68025B9FE38006D4E81 /* ConverterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD67E25B9FE38006D4E81 /* ConverterViewController.xib */; };
+		BF0FD68525B9FE4B006D4E81 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD68325B9FE4B006D4E81 /* ListViewController.swift */; };
+		BF0FD68625B9FE4B006D4E81 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD68425B9FE4B006D4E81 /* ListViewController.xib */; };
+		BF0FD68A25B9FECE006D4E81 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD68825B9FECE006D4E81 /* HostViewController.swift */; };
+		BF0FD68B25B9FECE006D4E81 /* HostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD68925B9FECE006D4E81 /* HostViewController.xib */; };
+		BF0FD68E25BA00A8006D4E81 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD68D25BA00A8006D4E81 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BF0FD65825B9F34D006D4E81 /* CryptoCurrenciesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCurrenciesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0FD65B25B9F34D006D4E81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF0FD65D25B9F34D006D4E81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BF0FD65F25B9F34D006D4E81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BF0FD66225B9F34D006D4E81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF0FD66425B9F34E006D4E81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF0FD66725B9F34E006D4E81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF0FD66925B9F34E006D4E81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF0FD67D25B9FE38006D4E81 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
+		BF0FD67E25B9FE38006D4E81 /* ConverterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterViewController.xib; sourceTree = "<group>"; };
+		BF0FD68325B9FE4B006D4E81 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		BF0FD68425B9FE4B006D4E81 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		BF0FD68825B9FECE006D4E81 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		BF0FD68925B9FECE006D4E81 /* HostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HostViewController.xib; sourceTree = "<group>"; };
+		BF0FD68D25BA00A8006D4E81 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,8 +50,10 @@
 		BF0FD64F25B9F34C006D4E81 = {
 			isa = PBXGroup;
 			children = (
+				BF0FD68D25BA00A8006D4E81 /* Localizable.strings */,
 				BF0FD65A25B9F34D006D4E81 /* CryptoCurrenciesApp */,
 				BF0FD65925B9F34D006D4E81 /* Products */,
+				D678A552C62AEDABF110B348 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +68,50 @@
 		BF0FD65A25B9F34D006D4E81 /* CryptoCurrenciesApp */ = {
 			isa = PBXGroup;
 			children = (
+				BF0FD67225B9F41D006D4E81 /* Presentation */,
+				BF0FD67125B9F40C006D4E81 /* Domain */,
+				BF0FD67025B9F405006D4E81 /* Data */,
 				BF0FD65B25B9F34D006D4E81 /* AppDelegate.swift */,
 				BF0FD65D25B9F34D006D4E81 /* SceneDelegate.swift */,
-				BF0FD65F25B9F34D006D4E81 /* ViewController.swift */,
-				BF0FD66125B9F34D006D4E81 /* Main.storyboard */,
 				BF0FD66425B9F34E006D4E81 /* Assets.xcassets */,
 				BF0FD66625B9F34E006D4E81 /* LaunchScreen.storyboard */,
 				BF0FD66925B9F34E006D4E81 /* Info.plist */,
 			);
 			path = CryptoCurrenciesApp;
+			sourceTree = "<group>";
+		};
+		BF0FD67025B9F405006D4E81 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		BF0FD67125B9F40C006D4E81 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		BF0FD67225B9F41D006D4E81 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				BF0FD67D25B9FE38006D4E81 /* ConverterViewController.swift */,
+				BF0FD67E25B9FE38006D4E81 /* ConverterViewController.xib */,
+				BF0FD68325B9FE4B006D4E81 /* ListViewController.swift */,
+				BF0FD68425B9FE4B006D4E81 /* ListViewController.xib */,
+				BF0FD68825B9FECE006D4E81 /* HostViewController.swift */,
+				BF0FD68925B9FECE006D4E81 /* HostViewController.xib */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D678A552C62AEDABF110B348 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0FD66825B9F34E006D4E81 /* LaunchScreen.storyboard in Resources */,
+				BF0FD68E25BA00A8006D4E81 /* Localizable.strings in Resources */,
+				BF0FD68025B9FE38006D4E81 /* ConverterViewController.xib in Resources */,
+				BF0FD68625B9FE4B006D4E81 /* ListViewController.xib in Resources */,
+				BF0FD68B25B9FECE006D4E81 /* HostViewController.xib in Resources */,
 				BF0FD66525B9F34E006D4E81 /* Assets.xcassets in Resources */,
-				BF0FD66325B9F34D006D4E81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,23 +187,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF0FD66025B9F34D006D4E81 /* ViewController.swift in Sources */,
 				BF0FD65C25B9F34D006D4E81 /* AppDelegate.swift in Sources */,
+				BF0FD68A25B9FECE006D4E81 /* HostViewController.swift in Sources */,
 				BF0FD65E25B9F34D006D4E81 /* SceneDelegate.swift in Sources */,
+				BF0FD68525B9FE4B006D4E81 /* ListViewController.swift in Sources */,
+				BF0FD67F25B9FE38006D4E81 /* ConverterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BF0FD66125B9F34D006D4E81 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF0FD66225B9F34D006D4E81 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BF0FD66625B9F34E006D4E81 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -1,12 +1,9 @@
-//
-//  QuiteBean.swift
-//  CryptoCurrenciesApp
-//
-//  Created by Алексей Рамашка on 28.01.21.
-//
 
 import Foundation
 
+/**
+
+ */
 struct QuoteBean : Decodable {
     let quoteInUSD: CurrencyBean
     

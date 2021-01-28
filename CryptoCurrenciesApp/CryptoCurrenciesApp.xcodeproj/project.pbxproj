@@ -23,7 +23,6 @@
 		BF0FD6A625BA066D006D4E81 /* CryptoCurrencyNetworkSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD6A525BA066D006D4E81 /* CryptoCurrencyNetworkSource.swift */; };
 		BF0FD6AD25BA0CBE006D4E81 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD6AC25BA0CBE006D4E81 /* BaseResponse.swift */; };
 		BF4A7FBC25BA136D0007006B /* ResponseStatusBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4A7FBB25BA136D0007006B /* ResponseStatusBean.swift */; };
-		BF4A7FC025BA16320007006B /* ObservableType+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4A7FBF25BA16320007006B /* ObservableType+.swift */; };
 		BFF1B3B325C31AF400C81466 /* CryptoCurrencyBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3B225C31AF400C81466 /* CryptoCurrencyBean.swift */; };
 		BFF1B3B625C332B000C81466 /* QuoteBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3B525C332B000C81466 /* QuoteBean.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,6 @@
 		BF0FD6A525BA066D006D4E81 /* CryptoCurrencyNetworkSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyNetworkSource.swift; sourceTree = "<group>"; };
 		BF0FD6AC25BA0CBE006D4E81 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		BF4A7FBB25BA136D0007006B /* ResponseStatusBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStatusBean.swift; sourceTree = "<group>"; };
-		BF4A7FBF25BA16320007006B /* ObservableType+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+.swift"; sourceTree = "<group>"; };
 		BFF1B3B225C31AF400C81466 /* CryptoCurrencyBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyBean.swift; sourceTree = "<group>"; };
 		BFF1B3B525C332B000C81466 /* QuoteBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteBean.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +111,6 @@
 			children = (
 				BFF1B3B925C3351D00C81466 /* Currency */,
 				BF4A7FBA25BA13520007006B /* Response */,
-				BF4A7FBF25BA16320007006B /* ObservableType+.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -291,7 +288,6 @@
 				BFF1B3B625C332B000C81466 /* QuoteBean.swift in Sources */,
 				BF0FD65E25B9F34D006D4E81 /* SceneDelegate.swift in Sources */,
 				BF0FD68525B9FE4B006D4E81 /* ListViewController.swift in Sources */,
-				BF4A7FC025BA16320007006B /* ObservableType+.swift in Sources */,
 				BFF1B3B325C31AF400C81466 /* CryptoCurrencyBean.swift in Sources */,
 				BF0FD67F25B9FE38006D4E81 /* ConverterViewController.swift in Sources */,
 				BF0FD6A625BA066D006D4E81 /* CryptoCurrencyNetworkSource.swift in Sources */,

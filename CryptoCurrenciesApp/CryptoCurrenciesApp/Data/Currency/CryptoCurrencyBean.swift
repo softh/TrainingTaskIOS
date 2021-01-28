@@ -11,10 +11,12 @@ struct CryptoCurrencyBean : Decodable {
     let id: Int
     let name: String
     let symbol: String
+    let quote: QuoteBean
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case symbol
+        case quote
     }
 }

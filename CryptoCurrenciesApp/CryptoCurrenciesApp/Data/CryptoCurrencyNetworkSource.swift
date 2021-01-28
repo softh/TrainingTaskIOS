@@ -26,12 +26,14 @@ class CryptoCurrencyNetworkSource : CryptoCurrencyDataSource {
         self.apiToken = apiToken
     }
     
-    func getCryptoCurrenciesList(countOfItems: Int) -> Single<BaseResponse> {
-        return json(.get, apiUrl, headers: getHeaders(apiToken: apiToken))
-            .mapObject(type: BaseResponse.self)
+    func getCryptoCurrenciesList(countOfItems: Int) -> Single<BaseResponse<CryptoCurrencyBean>>{
+        return RxAlamofire.request(.get, apiUrl, headers: getHeaders(apiToken: apiToken))
+            .validate()
+            .responseJSON()
+            .map {response in try! JSONDecoder().decode(BaseResponse<CryptoCurrencyBean>.self, from: response.data!) }
+            
             .asSingle()
     }
-
     
     private func getHeaders(apiToken: String) -> [String: String] {
         return [apiTokenHeaderKey: apiToken]

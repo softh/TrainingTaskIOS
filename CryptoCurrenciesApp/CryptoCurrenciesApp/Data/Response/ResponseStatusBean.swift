@@ -6,20 +6,15 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class ResponseStatusBean : Mappable {
-    private(set) var timeStamp: String = ""
-    private(set) var errorCode: Int = 0
-    private(set) var errorMessage: String = ""
+struct ResponseStatusBean : Decodable {
+    let timeStamp: String
+    let errorCode: Int
+    let errorMessage: String?
     
-    required init?(map: Map) {
-      
-    }
-    
-    func mapping(map: Map) {
-        timeStamp <- map["timestamp"]
-        errorCode <- map["errorcode"]
-        errorMessage <- map["errormessage"]
+    enum CodingKeys: String, CodingKey {
+        case timeStamp = "timestamp"
+        case errorCode = "error_code"
+        case errorMessage = "error_message"
     }
 }

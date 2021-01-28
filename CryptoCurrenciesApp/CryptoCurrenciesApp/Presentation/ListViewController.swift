@@ -24,7 +24,7 @@ class ListViewController: UIViewController {
             .subscribe(onSuccess: successConsumer, onError: errorConsumer)
     }
     
-    func successConsumer(response: BaseResponse) {
+    func successConsumer(response: BaseResponse<CryptoCurrencyBean>) {
         let a = 0
     }
     

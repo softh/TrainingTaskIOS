@@ -9,16 +9,13 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-class BaseResponse : Mappable {
+struct BaseResponse<T : Decodable> : Decodable {
+    let data: [T]
+    let responseStatus: ResponseStatusBean
     
-    private(set) var responseStatus: ResponseStatusBean? = nil
-    
-    func mapping(map: Map) {
-        self.responseStatus <- map["status"]
-    }
-    
-    required init?(map: Map) {
-        
+    enum CodingKeys: String, CodingKey {
+        case data = "data"
+        case responseStatus = "status"
     }
 
 }

@@ -17,14 +17,19 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .red
         
-        _ = CryptoCurrencyNetworkSource(apiUrl: url, apiToken: token)
-            .getCryptoCurrenciesList(countOfItems: 50)
+        let datasource = CryptoCurrencyNetworkSource(apiUrl: url, apiToken: token)
+            
+        let repository = CryptoCurrencyRepositoryImplementation(networkDataSource: datasource)
+            
+        let disposable = repository.getCryptoCurrenciesList(countOfItems: 50)
             .observeOn(MainScheduler())
             .subscribeOn(SerialDispatchQueueScheduler.init(qos: .background))
             .subscribe(onSuccess: successConsumer, onError: errorConsumer)
+        
+        
     }
     
-    func successConsumer(response: BaseResponse<CryptoCurrencyBean>) {
+    func successConsumer(response: [CryptoCurrencyModel]) {
         let a = 0
     }
     

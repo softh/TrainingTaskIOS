@@ -14,10 +14,6 @@ import ObjectMapper
 private let apiTokenHeaderKey = "X-CMC_PRO_API_KEY"
 
 class CryptoCurrencyNetworkSource : CryptoCurrencyDataSource {
-    
-    typealias T = Int
-    
-    
     private let apiUrl: String
     private let apiToken: String
     

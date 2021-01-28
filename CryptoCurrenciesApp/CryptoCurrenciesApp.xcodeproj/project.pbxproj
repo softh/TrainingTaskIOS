@@ -25,6 +25,10 @@
 		BF4A7FBC25BA136D0007006B /* ResponseStatusBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4A7FBB25BA136D0007006B /* ResponseStatusBean.swift */; };
 		BFF1B3B325C31AF400C81466 /* CryptoCurrencyBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3B225C31AF400C81466 /* CryptoCurrencyBean.swift */; };
 		BFF1B3B625C332B000C81466 /* QuoteBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3B525C332B000C81466 /* QuoteBean.swift */; };
+		BFF1B3BC25C33BC000C81466 /* CryptoCurrencyDatabaseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3BB25C33BC000C81466 /* CryptoCurrencyDatabaseSource.swift */; };
+		BFF1B3C025C33D8600C81466 /* CryptoCurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3BF25C33D8600C81466 /* CryptoCurrencyRepository.swift */; };
+		BFF1B3C425C33DC800C81466 /* CryptoCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3C325C33DC800C81466 /* CryptoCurrencyModel.swift */; };
+		BFF1B3C825C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3C725C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,10 @@
 		BF4A7FBB25BA136D0007006B /* ResponseStatusBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStatusBean.swift; sourceTree = "<group>"; };
 		BFF1B3B225C31AF400C81466 /* CryptoCurrencyBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyBean.swift; sourceTree = "<group>"; };
 		BFF1B3B525C332B000C81466 /* QuoteBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteBean.swift; sourceTree = "<group>"; };
+		BFF1B3BB25C33BC000C81466 /* CryptoCurrencyDatabaseSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyDatabaseSource.swift; sourceTree = "<group>"; };
+		BFF1B3BF25C33D8600C81466 /* CryptoCurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyRepository.swift; sourceTree = "<group>"; };
+		BFF1B3C325C33DC800C81466 /* CryptoCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyModel.swift; sourceTree = "<group>"; };
+		BFF1B3C725C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyRepositoryImplementation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +126,7 @@
 		BF0FD67125B9F40C006D4E81 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				BFF1B3BE25C33D4B00C81466 /* Currency */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -151,6 +160,17 @@
 				BF0FD6A225BA03DE006D4E81 /* CryptoCurrencyDataSource.swift */,
 				BF0FD6A525BA066D006D4E81 /* CryptoCurrencyNetworkSource.swift */,
 				BFF1B3B225C31AF400C81466 /* CryptoCurrencyBean.swift */,
+				BFF1B3BB25C33BC000C81466 /* CryptoCurrencyDatabaseSource.swift */,
+				BFF1B3C725C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		BFF1B3BE25C33D4B00C81466 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				BFF1B3BF25C33D8600C81466 /* CryptoCurrencyRepository.swift */,
+				BFF1B3C325C33DC800C81466 /* CryptoCurrencyModel.swift */,
 			);
 			path = Currency;
 			sourceTree = "<group>";
@@ -281,17 +301,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF1B3C425C33DC800C81466 /* CryptoCurrencyModel.swift in Sources */,
 				BF4A7FBC25BA136D0007006B /* ResponseStatusBean.swift in Sources */,
 				BF0FD6A325BA03DE006D4E81 /* CryptoCurrencyDataSource.swift in Sources */,
 				BF0FD65C25B9F34D006D4E81 /* AppDelegate.swift in Sources */,
 				BF0FD68A25B9FECE006D4E81 /* HostViewController.swift in Sources */,
 				BFF1B3B625C332B000C81466 /* QuoteBean.swift in Sources */,
+				BFF1B3C025C33D8600C81466 /* CryptoCurrencyRepository.swift in Sources */,
 				BF0FD65E25B9F34D006D4E81 /* SceneDelegate.swift in Sources */,
 				BF0FD68525B9FE4B006D4E81 /* ListViewController.swift in Sources */,
+				BFF1B3C825C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift in Sources */,
 				BFF1B3B325C31AF400C81466 /* CryptoCurrencyBean.swift in Sources */,
 				BF0FD67F25B9FE38006D4E81 /* ConverterViewController.swift in Sources */,
 				BF0FD6A625BA066D006D4E81 /* CryptoCurrencyNetworkSource.swift in Sources */,
 				BF0FD6AD25BA0CBE006D4E81 /* BaseResponse.swift in Sources */,
+				BFF1B3BC25C33BC000C81466 /* CryptoCurrencyDatabaseSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

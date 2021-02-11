@@ -32,11 +32,9 @@ struct CryptoCurrencyModel {
         self.totalCapitalization = totalCapitalization
         self.updatedDate = String.toDate(updatedDate)
     }
-    
-   
 }
 
-extension String {
+fileprivate extension String {
     static func toDate(_ value: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")

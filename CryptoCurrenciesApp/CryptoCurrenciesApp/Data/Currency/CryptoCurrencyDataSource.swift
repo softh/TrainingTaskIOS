@@ -9,5 +9,6 @@ import Foundation
 import RxSwift
 
 protocol CryptoCurrencyDataSource {
-    func getCryptoCurrenciesList(countOfItems: Int) -> Single<BaseResponse<CryptoCurrencyBean>>
+    associatedtype T
+    func getCryptoCurrenciesList(countOfItems: Int) -> Single<T>
 }

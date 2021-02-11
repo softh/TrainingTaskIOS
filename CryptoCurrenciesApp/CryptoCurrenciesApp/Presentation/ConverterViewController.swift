@@ -12,6 +12,6 @@ class ConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        // Do any additional setup after loading the view.
+        title = NSLocalizedString("currencies_converter_tab_label", comment: "")
     }
 }

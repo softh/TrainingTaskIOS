@@ -12,8 +12,9 @@ class HostViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let listViewController = ListViewController()
+        let listViewController = UINavigationController(rootViewController: ListViewController())
         let converterViewController = ConverterViewController()
+    
         
         let listItem = UITabBarItem()
         listItem.title = NSLocalizedString("currencies_list_tab_label", comment: "")

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="CryptoCurrenciesApp" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="tIp-Xh-cnW" id="Fz1-EN-Nx5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,22 +19,19 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryD-Ed-HuW">
-                    <rect key="frame" x="178" y="433" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvN-70-9p1">
-                    <rect key="frame" x="178" y="433" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="onLoadButtonEvent:" destination="-1" eventType="touchUpInside" id="xsX-h2-3i4"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tIp-Xh-cnW">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tIp-Xh-cnW" secondAttribute="trailing" id="8ZF-70-JyS"/>
+                <constraint firstItem="tIp-Xh-cnW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="M35-Y1-DIR"/>
+                <constraint firstItem="tIp-Xh-cnW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="MBF-Vh-3SE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tIp-Xh-cnW" secondAttribute="bottom" id="RZN-Jf-lip"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="69"/>
         </view>
     </objects>

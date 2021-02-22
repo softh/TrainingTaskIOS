@@ -93,3 +93,6 @@ iOSInjectionProject/
 # Cocoapods
 Pods/
 Podfile.lock
+
+# IDEA
+*.idea

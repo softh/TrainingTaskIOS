@@ -15,7 +15,7 @@ class CryptoCurrencyViewModel: BaseViewModel {
     private let cryptoCurrencyRepository : CryptoCurrencyRepository
     
     init(repository : CryptoCurrencyRepository) {
-        self.cryptoCurrencyRepository = repository
+        cryptoCurrencyRepository = repository
     }
     
     func loadCryptocurrenciesList(_ listSize: Int = 50) {
@@ -23,9 +23,9 @@ class CryptoCurrencyViewModel: BaseViewModel {
         let disposable = cryptoCurrencyRepository.getCryptoCurrenciesList(countOfItems: listSize)
             .observeOn(MainScheduler())
             .subscribeOn(SerialDispatchQueueScheduler.init(qos: .background))
-            .subscribe(onSuccess: loadListSuccessConsumer, onError: self.baseErrorConsumer)
+            .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
         
-        _ = self.compositeDisposable.insert(disposable)
+        compositeDisposable.insert(disposable)
     }
     
     private func loadListSuccessConsumer(value: [CryptoCurrencyModel]) {

@@ -38,7 +38,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func showDetails(model: CryptoCurrencyModel) {
-        let targetController = DetailsViewController()
+        let targetController = DetailsViewController(model: model)
         targetController.view.backgroundColor = UIColor.red
         navigationController?.pushViewController(targetController, animated:
         true)
@@ -86,10 +86,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func successConsumer(response: [CryptoCurrencyModel]) {
         print(response.count)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        viewModel.destroy()
     }
 
     private class ErrorObserver: ObserverType {

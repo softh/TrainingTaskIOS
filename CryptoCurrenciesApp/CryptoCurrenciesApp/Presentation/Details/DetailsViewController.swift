@@ -9,9 +9,20 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
+    private let model: CryptoCurrencyModel
+
+    init(model: CryptoCurrencyModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = model.name
         // Do any additional setup after loading the view.
     }
 

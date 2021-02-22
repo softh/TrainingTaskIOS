@@ -13,12 +13,14 @@ let token = "07c16939-e6cc-4446-8053-283b35eb91fa"
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let disposeBag = DisposeBag()
+
     let cellId = "currencyCell"
 
     var cryptoCurrencies = [CryptoCurrencyModel]()
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cryptoCurrencies.count
+        cryptoCurrencies.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,10 +29,20 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let currency = cryptoCurrencies[indexPath.row]
         cell.nameVIew?.text = currency.name
-        cell.costView?.text = String(currency.currentPrice)
+        cell.costView?.text = "$\(currency.currentPrice.roundedToPlaces())"
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showDetails(model: cryptoCurrencies[indexPath.row])
+    }
+
+    private func showDetails(model: CryptoCurrencyModel) {
+        let targetController = DetailsViewController()
+        targetController.view.backgroundColor = UIColor.red
+        navigationController?.pushViewController(targetController, animated:
+        true)
+    }
 
     private var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
@@ -39,29 +51,29 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     )
     private(set) lazy var viewModel = CryptoCurrencyViewModel(repository: repository)
 
-    override func viewDidAppear(_ animated: Bool) {
-        initView()
-        loadData()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.register(UINib.init(nibName:"CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
-        tableView.delegate = self
-        tableView.dataSource = self
+        initView()
+        loadData()
     }
 
     private func initView() {
         view.backgroundColor = .red
         title = "currencies_list_tab_label".localized
 
+        tableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
+        tableView.delegate = self
+        tableView.dataSource = self
+
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        viewModel.currenciesListSubject.subscribe(LoadDataObserver(self))
-        viewModel.errorSubject.subscribe(ErrorObserver(self))
-        viewModel.progressSubject.subscribe(ProgressObserver(self))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh,
+                target: self, action: #selector(refresh(_:)))
+
+        viewModel.currenciesListSubject.subscribe(LoadDataObserver(self)).disposed(by: disposeBag)
+        viewModel.errorSubject.subscribe(ErrorObserver(self)).disposed(by: disposeBag)
+        viewModel.progressSubject.subscribe(ProgressObserver(self)).disposed(by: disposeBag)
     }
 
     @objc func refresh(_ sender: AnyObject) {

@@ -19,7 +19,9 @@ struct CryptoCurrencyModel {
     let totalCapitalization: Double
     let updatedDate: Date
     
-    init(id: Int, name: String, symbol: String, currentPrice: Double, percentChangeByHour: Double, percentChangeByDay: Double, percentChangeByWeek: Double, percentChangeByMonth: Double, totalCapitalization: Double, updatedDate: String) {
+    init(id: Int, name: String, symbol: String, currentPrice: Double, percentChangeByHour: Double,
+         percentChangeByDay: Double, percentChangeByWeek: Double, percentChangeByMonth: Double,
+         totalCapitalization: Double, updatedDate: String) {
         
         self.id = id
         self.name = name

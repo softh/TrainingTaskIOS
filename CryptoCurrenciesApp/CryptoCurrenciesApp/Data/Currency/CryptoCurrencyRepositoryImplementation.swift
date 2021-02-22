@@ -42,7 +42,11 @@ class CryptoCurrencyRepositoryImplementation : CryptoCurrencyRepository {
         var result = [CryptoCurrencyModel]()
         beans.forEach { data in
             let quote = data.quote.quoteInUSD
-            let model = CryptoCurrencyModel(id: data.id, name: data.name, symbol: data.symbol, currentPrice: quote.currentPrice, percentChangeByHour: quote.percentChangeByHour, percentChangeByDay: quote.percentChangeByDay, percentChangeByWeek: quote.percentChangeByWeek, percentChangeByMonth: quote.percentChangeByMonth, totalCapitalization: quote.totalCapitalization, updatedDate: quote.updatedDate)
+            let model = CryptoCurrencyModel(id: data.id, name: data.name, symbol: data.symbol,
+                    currentPrice: quote.currentPrice, percentChangeByHour: quote.percentChangeByHour,
+                    percentChangeByDay: quote.percentChangeByDay, percentChangeByWeek: quote.percentChangeByWeek,
+                    percentChangeByMonth: quote.percentChangeByMonth, totalCapitalization: quote.totalCapitalization,
+                    updatedDate: quote.updatedDate)
             
             result.append(model)
         }

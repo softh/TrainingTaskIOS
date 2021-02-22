@@ -9,25 +9,24 @@ import Foundation
 import RxSwift
 
 class CryptoCurrencyViewModel: BaseViewModel {
-    
+
     private(set) lazy var currenciesListSubject = PublishSubject<[CryptoCurrencyModel]>()
-    
-    private let cryptoCurrencyRepository : CryptoCurrencyRepository
-    
-    init(repository : CryptoCurrencyRepository) {
+
+    private let cryptoCurrencyRepository: CryptoCurrencyRepository
+
+    init(repository: CryptoCurrencyRepository) {
         cryptoCurrencyRepository = repository
     }
-    
+
     func loadCryptocurrenciesList(_ listSize: Int = 50) {
         postStartOperation()
-        let disposable = cryptoCurrencyRepository.getCryptoCurrenciesList(countOfItems: listSize)
-            .observeOn(MainScheduler())
-            .subscribeOn(SerialDispatchQueueScheduler.init(qos: .background))
-            .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
-        
-        compositeDisposable.insert(disposable)
+        cryptoCurrencyRepository.getCryptoCurrenciesList(countOfItems: listSize)
+                .subscribeOn(SerialDispatchQueueScheduler.init(qos: .background))
+                .observeOn(MainScheduler())
+                .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
+                .disposed(by: disposeBag)
     }
-    
+
     private func loadListSuccessConsumer(value: [CryptoCurrencyModel]) {
         postFinishOperation()
         currenciesListSubject.onNext(value)

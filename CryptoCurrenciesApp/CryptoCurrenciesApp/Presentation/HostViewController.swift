@@ -20,14 +20,13 @@ class HostViewController: UITabBarController {
         listItem.title = NSLocalizedString("currencies_list_tab_label", comment: "")
         listItem.image = UIImage(named: "home_icon")
         listViewController.tabBarItem = listItem
-        
         let converterItem = UITabBarItem()
         converterItem.title = NSLocalizedString("currencies_converter_tab_label", comment: "")
         converterItem.image = UIImage(named: "home_icon")
         converterViewController.tabBarItem = converterItem
         
-        self.viewControllers = [listViewController, converterViewController]
-        self.selectedViewController = listViewController
+        viewControllers = [listViewController, converterViewController]
+        selectedViewController = listViewController
     }
 
 }

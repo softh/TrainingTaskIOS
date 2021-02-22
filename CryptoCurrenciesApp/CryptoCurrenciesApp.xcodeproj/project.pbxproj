@@ -20,6 +20,8 @@
 		BF0FD6AD25BA0CBE006D4E81 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0FD6AC25BA0CBE006D4E81 /* BaseResponse.swift */; };
 		BF426E5525E41BB9003D04F6 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF426E5325E41BB9003D04F6 /* CurrencyTableViewCell.swift */; };
 		BF426E5625E41BB9003D04F6 /* CurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF426E5425E41BB9003D04F6 /* CurrencyTableViewCell.xib */; };
+		BF426E5B25E43067003D04F6 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF426E5925E43067003D04F6 /* DetailsViewController.swift */; };
+		BF426E5C25E43067003D04F6 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF426E5A25E43067003D04F6 /* DetailsViewController.xib */; };
 		BF4A7FBC25BA136D0007006B /* ResponseStatusBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4A7FBB25BA136D0007006B /* ResponseStatusBean.swift */; };
 		BF505D8125DAF1A2006E8FF6 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF505D8025DAF1A2006E8FF6 /* ProgressView.swift */; };
 		BF505D9425DB34E5006E8FF6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF505D9325DB34E5006E8FF6 /* String+.swift */; };
@@ -34,6 +36,7 @@
 		BFF1B3C825C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1B3C725C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift */; };
 		F271936ADC895B5BF7CED114 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2719EBA955FB7FE585F74AD /* ConverterViewController.swift */; };
 		F27193D2F75E2CDC5223702D /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2719915A5FB5FA7E54B73E9 /* ListViewController.xib */; };
+		F27197AE7E22CB59F39F1251 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2719AE611848B1E7CBFA33D /* Double+.swift */; };
 		F2719A2BE95B131E9AE9AD04 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2719A2D17F2032FD95FD7E0 /* ListViewController.swift */; };
 		F2719A4EE445EA824266F490 /* ConverterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2719DFCD85517CF5A1D058E /* ConverterViewController.xib */; };
 /* End PBXBuildFile section */
@@ -56,6 +59,8 @@
 		BF0FD6AC25BA0CBE006D4E81 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		BF426E5325E41BB9003D04F6 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		BF426E5425E41BB9003D04F6 /* CurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		BF426E5925E43067003D04F6 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		BF426E5A25E43067003D04F6 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		BF4A7FBB25BA136D0007006B /* ResponseStatusBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStatusBean.swift; sourceTree = "<group>"; };
 		BF505D8025DAF1A2006E8FF6 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BF505D9325DB34E5006E8FF6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 		BFF1B3C725C343BB00C81466 /* CryptoCurrencyRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyRepositoryImplementation.swift; sourceTree = "<group>"; };
 		F2719915A5FB5FA7E54B73E9 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		F2719A2D17F2032FD95FD7E0 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		F2719AE611848B1E7CBFA33D /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		F2719DFCD85517CF5A1D058E /* ConverterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterViewController.xib; sourceTree = "<group>"; };
 		F2719EBA955FB7FE585F74AD /* ConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +155,7 @@
 		BF0FD67225B9F41D006D4E81 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				BF426E5825E43048003D04F6 /* Details */,
 				BF0FD68825B9FECE006D4E81 /* HostViewController.swift */,
 				BF0FD68925B9FECE006D4E81 /* HostViewController.xib */,
 				BFB5CD1D25D5B5C70082FBE8 /* CryptoCurrencyViewModel.swift */,
@@ -156,6 +163,15 @@
 				F2719E3AA29272E22D75CD36 /* Converter */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		BF426E5825E43048003D04F6 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				BF426E5925E43067003D04F6 /* DetailsViewController.swift */,
+				BF426E5A25E43067003D04F6 /* DetailsViewController.xib */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		BF4A7FBA25BA13520007006B /* Response */ = {
@@ -174,6 +190,7 @@
 				BFB5CD1A25D5AFF80082FBE8 /* BaseViewModel.swift */,
 				BF505D8025DAF1A2006E8FF6 /* ProgressView.swift */,
 				BF505D9325DB34E5006E8FF6 /* String+.swift */,
+				F2719AE611848B1E7CBFA33D /* Double+.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -295,6 +312,7 @@
 				BF0FD66525B9F34E006D4E81 /* Assets.xcassets in Resources */,
 				F2719A4EE445EA824266F490 /* ConverterViewController.xib in Resources */,
 				F27193D2F75E2CDC5223702D /* ListViewController.xib in Resources */,
+				BF426E5C25E43067003D04F6 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +368,7 @@
 				BFF1B3C425C33DC800C81466 /* CryptoCurrencyModel.swift in Sources */,
 				BF4A7FBC25BA136D0007006B /* ResponseStatusBean.swift in Sources */,
 				BF505D9425DB34E5006E8FF6 /* String+.swift in Sources */,
+				BF426E5B25E43067003D04F6 /* DetailsViewController.swift in Sources */,
 				BFB5CD1B25D5AFF80082FBE8 /* BaseViewModel.swift in Sources */,
 				BF0FD6A325BA03DE006D4E81 /* CryptoCurrencyDataSource.swift in Sources */,
 				BFB5CD1E25D5B5C70082FBE8 /* CryptoCurrencyViewModel.swift in Sources */,
@@ -368,6 +387,7 @@
 				BFB5CD1725D1B7A70082FBE8 /* Date+.swift in Sources */,
 				F271936ADC895B5BF7CED114 /* ConverterViewController.swift in Sources */,
 				F2719A2BE95B131E9AE9AD04 /* ListViewController.swift in Sources */,
+				F27197AE7E22CB59F39F1251 /* Double+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

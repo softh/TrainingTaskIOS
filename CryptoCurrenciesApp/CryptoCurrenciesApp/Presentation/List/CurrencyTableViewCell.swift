@@ -9,9 +9,18 @@ import UIKit
 
 class CurrencyTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nameVIew: UILabel!
+    @IBOutlet private weak var nameView: UILabel!
     
-    @IBOutlet weak var costView: UILabel!
+    @IBOutlet private weak var costView: UILabel!
+
+    var currencyModel: CryptoCurrencyModel? {
+        didSet {
+            if let model = currencyModel {
+                nameView.text = model.name
+                costView.text = "$\(model.currentPrice.roundedToPlaces())"
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +29,4 @@ class CurrencyTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }

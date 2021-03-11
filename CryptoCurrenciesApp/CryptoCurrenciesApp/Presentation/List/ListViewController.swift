@@ -7,42 +7,16 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 let url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200"
 let token = "07c16939-e6cc-4446-8053-283b35eb91fa"
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 
     let cellId = "currencyCell"
-
-    var cryptoCurrencies = [CryptoCurrencyModel]()
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cryptoCurrencies.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CurrencyTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellId)
-                as! CurrencyTableViewCell
-
-        let currency = cryptoCurrencies[indexPath.row]
-        cell.nameVIew?.text = currency.name
-        cell.costView?.text = "$\(currency.currentPrice.roundedToPlaces())"
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showDetails(model: cryptoCurrencies[indexPath.row])
-    }
-
-    private func showDetails(model: CryptoCurrencyModel) {
-        let targetController = DetailsViewController(model: model)
-        targetController.view.backgroundColor = UIColor.red
-        navigationController?.pushViewController(targetController, animated:
-        true)
-    }
 
     private var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
@@ -58,12 +32,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func initView() {
-        view.backgroundColor = .red
         title = "currencies_list_tab_label".localized
-
-        tableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
-        tableView.delegate = self
-        tableView.dataSource = self
 
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -71,9 +40,27 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh,
                 target: self, action: #selector(refresh(_:)))
 
-        viewModel.currenciesListSubject.subscribe(LoadDataObserver(self)).disposed(by: disposeBag)
         viewModel.errorSubject.subscribe(ErrorObserver(self)).disposed(by: disposeBag)
         viewModel.progressSubject.subscribe(ProgressObserver(self)).disposed(by: disposeBag)
+
+        initTableView()
+    }
+
+    private func initTableView() {
+        tableView.register(UINib.init(nibName: "CurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
+
+        tableView.rx.modelSelected(CryptoCurrencyModel.self)
+                .subscribe(onNext: { model in
+                    self.navigationController?.pushViewController(
+                            DetailsViewController(model: model),
+                            animated: true
+                    )
+                }).disposed(by: disposeBag)
+
+        viewModel.currenciesListSubject.bind(to: tableView.rx.items(cellIdentifier: cellId,
+                cellType: CurrencyTableViewCell.self)) { (row, item, cell) in
+            cell.currencyModel = item
+        }.disposed(by: disposeBag)
     }
 
     @objc func refresh(_ sender: AnyObject) {
@@ -103,25 +90,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             controllerReference?.present(alert, animated: true, completion: nil)
         }
     }
-
-    private class LoadDataObserver: ObserverType {
-        typealias Element = [CryptoCurrencyModel]
-
-        private weak var controllerReference: ListViewController?
-
-        init(_ controllerReference: ListViewController) {
-            self.controllerReference = controllerReference
-        }
-
-        func on(_ event: Event<[CryptoCurrencyModel]>) {
-            controllerReference?.tableView.refreshControl = nil
-            if event.element != nil {
-                controllerReference?.cryptoCurrencies.removeAll()
-                controllerReference?.cryptoCurrencies += event.element ?? []
-                controllerReference?.tableView.reloadData()
-            }
-        }
-    }
 }
 
 private class ProgressObserver: ObserverType {
@@ -148,5 +116,4 @@ private class ProgressObserver: ObserverType {
             progressView?.dismiss()
         }
     }
-
 }

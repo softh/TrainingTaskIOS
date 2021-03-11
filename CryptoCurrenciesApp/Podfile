@@ -8,6 +8,7 @@ target 'CryptoCurrenciesApp' do
   # Pods for CryptoCurrenciesApp
   pod 'Alamofire'
   pod 'RxAlamofire'
+  pod 'RxCocoa'
   pod 'AlamofireObjectMapper'
 
 end

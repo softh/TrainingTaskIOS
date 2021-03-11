@@ -1,0 +1,52 @@
+{
+	"notes": [{
+		"blockType": "RELEASE_NOTE",
+		"captionText": "Платежи",
+		"dependentAppVersion": "3.30.1",
+		"infoText": "Что-то там плати",
+		"imagePath": "release_0.png",
+		"id": 0
+	}, {
+		"blockType": "RELEASE_NOTE",
+		"captionText": "Покупки",
+		"dependentAppVersion": "3.30.1",
+		"infoText": "Следи за своей женой, на что она тратит бабки",
+		"imagePath": "release_1.png",
+		"id": 1
+	}, {
+		"blockType": "RELEASE_NOTE",
+		"captionText": "QR",
+		"dependentAppVersion": "3.30.2",
+		"infoText": "Переводи деньги за метадон не паля карту барыги",
+		"imagePath": "release_3.png",
+		"id": 2
+	}, {
+		"blockType": "GENERAL_NOTE",
+		"captionText": "Плати за услуги с помощью QR",
+		"infoText": "Совершайте платежи без нудного вписывания реквизитов",
+		"imagePath": "qr.png",
+		"id": 3
+	}, {
+		"blockType": "GENERAL_NOTE",
+		"captionText": "Оплата одной кнопкой",
+		"infoText": "Оплатите коммуналку в один клик",
+		"imagePath": "one_btn_payment.png",
+		"id": 4
+	}]
+}
+
+internal class ReleaseNotes (
+    private val notes: List<Note>? = null)
+
+internal class Note(
+    private val blockType: BlockType? = null,
+    private val id: Long = 0,
+    private val dependentAppVersion: String? = null,
+    private val captionText: String? = null,
+    private val infoText: String? = null,
+    private val imagePath: String? = null
+)
+
+internal enum class BlockType {
+    RELEASE_NOTE, GENERAL_NOTE
+}

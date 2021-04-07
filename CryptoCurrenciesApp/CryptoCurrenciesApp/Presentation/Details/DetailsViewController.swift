@@ -23,7 +23,6 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = model.name
-        // Do any additional setup after loading the view.
     }
 
 

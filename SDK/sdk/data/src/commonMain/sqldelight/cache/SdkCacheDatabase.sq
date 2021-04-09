@@ -1,0 +1,25 @@
+CREATE TABLE CryptoCurrencyEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    currencyId INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    currentPrice REAL NOT NULL,
+    percentChangeByHour REAL NOT NULL,
+    percentChangeByDay REAL NOT NULL,
+    percentChangeByWeek REAL NOT NULL,
+    percentChangeByMonth REAL NOT NULL,
+    totalCapitalization REAL NOT NULL,
+    updatedDate TEXT NOT NULL
+);
+
+removeAllCryptoCurrency:
+DELETE FROM CryptoCurrencyEntity;
+
+insertCryptoCurrency:
+INSERT INTO CryptoCurrencyEntity(currencyId, name, symbol, currentPrice, percentChangeByHour,
+percentChangeByDay, percentChangeByWeek, percentChangeByMonth, totalCapitalization,
+updatedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getAllCryptoCurrency:
+SELECT * FROM CryptoCurrencyEntity;
+

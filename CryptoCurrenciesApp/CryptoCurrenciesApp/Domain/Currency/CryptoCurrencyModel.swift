@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CryptoCurrencyModel {
+struct CryptoCurrencyModelOld {
     let id: Int
     let name: String
     let symbol: String

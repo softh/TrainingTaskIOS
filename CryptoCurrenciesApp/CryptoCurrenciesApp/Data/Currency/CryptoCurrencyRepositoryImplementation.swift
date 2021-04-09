@@ -18,7 +18,7 @@ class CryptoCurrencyRepositoryImplementation : CryptoCurrencyRepository {
         self.cacheDataSource = cacheDataSource
     }
     
-    func getCryptoCurrenciesList(countOfItems: Int) -> Single<[CryptoCurrencyModel]> {
+    func getCryptoCurrenciesList(countOfItems: Int) -> Single<[CryptoCurrencyModelOld]> {
         
         let networkSingleStream = networkDataSource.getCryptoCurrenciesList(countOfItems: countOfItems)
             .do(onSuccess: checkErrorCodeConsumer)
@@ -38,11 +38,11 @@ class CryptoCurrencyRepositoryImplementation : CryptoCurrencyRepository {
         }
     }
     
-    private let domainMapper: ([CryptoCurrencyBean]) -> [CryptoCurrencyModel] = { beans in
-        var result = [CryptoCurrencyModel]()
+    private let domainMapper: ([CryptoCurrencyBean]) -> [CryptoCurrencyModelOld] = { beans in
+        var result = [CryptoCurrencyModelOld]()
         beans.forEach { data in
             let quote = data.quote.quoteInUSD
-            let model = CryptoCurrencyModel(id: data.id, name: data.name, symbol: data.symbol,
+            let model = CryptoCurrencyModelOld(id: data.id, name: data.name, symbol: data.symbol,
                     currentPrice: quote.currentPrice, percentChangeByHour: quote.percentChangeByHour,
                     percentChangeByDay: quote.percentChangeByDay, percentChangeByWeek: quote.percentChangeByWeek,
                     percentChangeByMonth: quote.percentChangeByMonth, totalCapitalization: quote.totalCapitalization,

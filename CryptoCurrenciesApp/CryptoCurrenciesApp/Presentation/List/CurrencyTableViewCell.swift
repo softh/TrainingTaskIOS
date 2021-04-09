@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CryptoCurrencySDK
 
 class CurrencyTableViewCell: UITableViewCell {
 

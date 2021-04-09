@@ -7,24 +7,24 @@
 
 import Foundation
 import RxSwift
+import CryptoCurrencySDK
 
 class CryptoCurrencyViewModel: BaseViewModel {
 
     private(set) lazy var currenciesListSubject = PublishSubject<[CryptoCurrencyModel]>()
 
-    private let cryptoCurrencyRepository: CryptoCurrencyRepository
+    private let sdk: CryptoSDKProtocol
 
-    init(repository: CryptoCurrencyRepository) {
-        cryptoCurrencyRepository = repository
+    init(sdk: CryptoSDKProtocol) {
+        self.sdk = sdk
     }
 
     func loadCryptocurrenciesList(_ listSize: Int = 50) {
         postStartOperation()
-        cryptoCurrencyRepository.getCryptoCurrenciesList(countOfItems: listSize)
-                .subscribeOn(SerialDispatchQueueScheduler.init(qos: .background))
-                .observeOn(MainScheduler())
-                .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
-                .disposed(by: disposeBag)
+        CryptoSDKRxWrapper(sdk: self.sdk).getCryptoCurrenciesList(countOfItems: listSize).subscribeOn(SerialDispatchQueueScheduler.init(qos: .background))
+            .observeOn(MainScheduler())
+            .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
+            .disposed(by: disposeBag)
     }
 
     private func loadListSuccessConsumer(value: [CryptoCurrencyModel]) {

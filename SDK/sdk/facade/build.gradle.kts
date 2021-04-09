@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
-
 val libraryName = "CryptoCurrencySDK"
 val libraryVersion = "0.0.1-RC0"
 
@@ -48,8 +45,8 @@ val buildXCFramework by tasks.creating(Exec::class) {
     executable = "sh"
     args = listOf(
         "${rootProject.projectDir.resolve("scripts/buildXCFramework.sh")}",
-        "${buildDir.resolve("bin/iosArm64/releaseFramework/FormsSimpleSDK.framework")}",
-        "${buildDir.resolve("bin/iosX64/releaseFramework/FormsSimpleSDK.framework")}",
+        "${buildDir.resolve("bin/iosArm64/releaseFramework/$libraryName.framework")}",
+        "${buildDir.resolve("bin/iosX64/releaseFramework/$libraryName.framework")}",
         "${rootProject.buildDir}/FormsSimpleSDK.xcframework"
     )
 }

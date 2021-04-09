@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CryptoCurrencySDK
 
 let url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200"
 let token = "07c16939-e6cc-4446-8053-283b35eb91fa"
@@ -23,7 +24,25 @@ class ListViewController: UIViewController {
     private(set) lazy var repository = CryptoCurrencyRepositoryImplementation(
             networkDataSource: CryptoCurrencyNetworkSource(apiUrl: url, apiToken: token), cacheDataSource: CryptoCurrencyCacheDataSource()
     )
-    private(set) lazy var viewModel = CryptoCurrencyViewModel(repository: repository)
+    
+    private(set) lazy var viewModel = CryptoCurrencyViewModel(sdk: createSDK())
+    
+    private func createSDK() -> CryptoSDKProtocol {
+        var sdkInstance: CryptoSDKProtocol
+          do {
+            sdkInstance = try CryptoSDK.Builder()
+            .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
+            .withApiToken(apiToken: "07c16939-e6cc-4446-8053-283b35eb91fa")
+            .withCachingType(cachingType: CryptoSDK.CachingType.inMemory)
+            .build()
+            
+            return sdkInstance
+        } catch {
+            exit(-1)
+        }
+        
+        return sdkInstance
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

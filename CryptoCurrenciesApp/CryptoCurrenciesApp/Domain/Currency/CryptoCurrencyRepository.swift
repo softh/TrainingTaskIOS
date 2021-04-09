@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol CryptoCurrencyRepository {
-    func getCryptoCurrenciesList(countOfItems: Int) -> Single<Array<CryptoCurrencyModel>>
+    func getCryptoCurrenciesList(countOfItems: Int) -> Single<Array<CryptoCurrencyModelOld>>
 }

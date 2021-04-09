@@ -18,6 +18,7 @@ kotlin {
             version = libraryVersion
             export(project(":sdk:domain"))
             export(project(":sdk:data"))
+            linkerOpts.add("-lsqlite3")
         }
     }
 

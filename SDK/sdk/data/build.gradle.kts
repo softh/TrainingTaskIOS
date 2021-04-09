@@ -21,6 +21,9 @@ kotlin {
                 implementation(Config.Dependencies.Shared.Network.ktorCommonClientLogging)
                 implementation(Config.Dependencies.Shared.Network.ktorCommonClientSerialization)
 
+                implementation(project(":sdk:domain"))
+
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.1")
                 implementation("com.squareup.sqldelight:runtime:1.4.4")
             }
         }

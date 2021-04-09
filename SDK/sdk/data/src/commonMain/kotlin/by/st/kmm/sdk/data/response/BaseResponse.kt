@@ -10,8 +10,8 @@ import kotlinx.serialization.Serializable
 data class BaseResponse<T>(
 
     @SerialName("data")
-    val data: List<T>,
+    val data: List<T>?,
 
-    @SerialName("responseStatus")
+    @SerialName("status")
     val responseStatus: ResponseStatusDto
 )

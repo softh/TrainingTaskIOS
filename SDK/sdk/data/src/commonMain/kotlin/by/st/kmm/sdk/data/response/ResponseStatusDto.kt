@@ -9,12 +9,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseStatusDto(
 
-        @SerialName("timeStamp")
+        @SerialName("timestamp")
         val timeStamp: String,
 
-        @SerialName("errorCode")
+        @SerialName("error_code")
         val errorCode: Int,
 
-        @SerialName("errorMessage")
+        @SerialName("error_message")
         val errorMessage: String?
 )

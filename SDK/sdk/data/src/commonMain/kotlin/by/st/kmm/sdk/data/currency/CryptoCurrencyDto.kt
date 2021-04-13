@@ -23,7 +23,7 @@ data class CryptoCurrencyDto(
     val quote: QuoteDto
 )
 
-internal fun CryptoCurrencyDto.toDomainModel() : CryptoCurrencyModel {
+internal fun CryptoCurrencyDto.toDomainModel(logoData: ByteArray?) : CryptoCurrencyModel {
     return CryptoCurrencyModel(
         this.id,
         this.name,
@@ -34,10 +34,12 @@ internal fun CryptoCurrencyDto.toDomainModel() : CryptoCurrencyModel {
         this.quote.quoteInUSD.percentChangeByWeek,
         this.quote.quoteInUSD.percentChangeByMonth,
         this.quote.quoteInUSD.totalCapitalization,
-        this.quote.quoteInUSD.updatedDate
+        this.quote.quoteInUSD.updatedDate,
+        logoData
     )
 }
 
+@Deprecated("Logo data not available in current time")
 internal fun List<CryptoCurrencyDto>?.toDomainModel() : List<CryptoCurrencyModel> {
-    return this?.map { it.toDomainModel() } ?: listOf()
+    return this?.map { it.toDomainModel(null) } ?: listOf()
 }

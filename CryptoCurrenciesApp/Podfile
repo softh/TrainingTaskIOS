@@ -6,9 +6,7 @@ target 'CryptoCurrenciesApp' do
   use_frameworks!
 
   # Pods for CryptoCurrenciesApp
-  pod 'Alamofire'
-  pod 'RxAlamofire'
   pod 'RxCocoa'
-  pod 'AlamofireObjectMapper'
-
+  pod 'RxSwift'
+  pod 'lottie-ios'
 end

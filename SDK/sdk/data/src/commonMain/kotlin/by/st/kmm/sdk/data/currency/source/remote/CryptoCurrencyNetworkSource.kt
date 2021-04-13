@@ -2,8 +2,12 @@ package by.st.kmm.sdk.data.currency.source.remote
 
 import by.st.kmm.sdk.data.common.net.HttpClientFactory
 import by.st.kmm.sdk.data.currency.CryptoCurrencyDto
-import by.st.kmm.sdk.data.response.BaseResponse
+import by.st.kmm.sdk.data.currency.CurrencyLogoDto
+import by.st.kmm.sdk.data.response.BaseListResponse
+import by.st.kmm.sdk.data.response.BaseMapResponse
+import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 import io.ktor.utils.io.core.*
 
 /**
@@ -25,13 +29,41 @@ class CryptoCurrencyNetworkSource(
 
     override suspend fun getCryptoCurrencies(
         countOfElements: Int,
-        completionBlock: (response: BaseResponse<CryptoCurrencyDto>) -> Unit
-    ): BaseResponse<CryptoCurrencyDto> {
+        completionBlock: (response: BaseListResponse<CryptoCurrencyDto>) -> Unit
+    ): BaseListResponse<CryptoCurrencyDto> {
         return getHttpClient().use {
-            val result = it.get("$apiEndpoint/cryptocurrency/listings/latest?limit=$countOfElements")
-                    as BaseResponse<CryptoCurrencyDto>
+            val result = it.get {
+                url("$apiEndpoint/cryptocurrency/listings/latest")
+                parameter("limit", countOfElements)
+            } as BaseListResponse<CryptoCurrencyDto>
+
             completionBlock.invoke(result)
             result
+        }
+    }
+
+    override suspend fun getCurrenciesLogo(
+        currencyIds: IntArray,
+        completionBlock: (response: BaseMapResponse<CurrencyLogoDto>) -> Unit
+    ): BaseMapResponse<CurrencyLogoDto> {
+        return getHttpClient().use {
+            val result = it.get {
+                url("$apiEndpoint/cryptocurrency/info")
+                parameter("aux", "logo")
+                parameter("id", currencyIds.joinToString(separator = ","))
+            } as BaseMapResponse<CurrencyLogoDto>
+
+            completionBlock.invoke(result)
+            result
+        }
+    }
+
+    override suspend fun loadCurrencyLogo(logoUrl: String) : ByteArray{
+        return getHttpClient().use {
+            val response: ByteArray = it.get {
+                url(logoUrl)
+            }
+            response
         }
     }
 }

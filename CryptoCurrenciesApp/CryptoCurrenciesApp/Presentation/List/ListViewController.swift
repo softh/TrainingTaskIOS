@@ -8,9 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
-let url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200"
-let token = "07c16939-e6cc-4446-8053-283b35eb91fa"
+import CryptoCurrencySDK
 
 class ListViewController: UIViewController {
 
@@ -18,15 +16,15 @@ class ListViewController: UIViewController {
 
     let cellId = "currencyCell"
 
-    private var refreshControl = UIRefreshControl()
+    var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
-    private(set) lazy var repository = CryptoCurrencyRepositoryImplementation(
-            networkDataSource: CryptoCurrencyNetworkSource(apiUrl: url, apiToken: token), cacheDataSource: CryptoCurrencyCacheDataSource()
-    )
-    private(set) lazy var viewModel = CryptoCurrencyViewModel(repository: repository)
+    
+    
+    private(set) lazy var viewModel = CryptoCurrencyListViewModel(sdk: SDKProvider.getSDK())
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initView()
         loadData()
     }
@@ -51,10 +49,7 @@ class ListViewController: UIViewController {
 
         tableView.rx.modelSelected(CryptoCurrencyModel.self)
                 .subscribe(onNext: { model in
-                    self.navigationController?.pushViewController(
-                            DetailsViewController(model: model),
-                            animated: true
-                    )
+                    self.present(DetailsViewController(model: model), animated: true, completion: nil)
                 }).disposed(by: disposeBag)
 
         viewModel.currenciesListSubject.bind(to: tableView.rx.items(cellIdentifier: cellId,
@@ -68,7 +63,32 @@ class ListViewController: UIViewController {
     }
 
     func loadData() {
-        viewModel.loadCryptocurrenciesList()
+        viewModel.loadCryptocurrenciesList(SDKProvider.defaultCurrencyListSize)
+    }
+    
+
+    func createSingle<T>(
+        scope: Kotlinx_coroutines_coreCoroutineScope,
+        suspendWrapper: SuspendWrapper<T>
+    ) -> Single<T> {
+        return Single<T>.create { single in
+            let job: Kotlinx_coroutines_coreJob = suspendWrapper.subscribe(
+                scope: scope,
+                onSuccess: { item in single(.success(item!)) },
+                onThrow: { error in single(.error(KotlinError(error))) }
+            )
+            return Disposables.create { job.cancel(cause: nil) }
+        }
+    }
+    
+    class KotlinError: LocalizedError {
+        let throwable: KotlinThrowable
+        init(_ throwable: KotlinThrowable) {
+            self.throwable = throwable
+        }
+        var errorDescription: String? {
+            get { throwable.message }
+        }
     }
 
     func successConsumer(response: [CryptoCurrencyModel]) {
@@ -96,10 +116,10 @@ private class ProgressObserver: ObserverType {
 
     typealias Element = BaseViewModel.OperationStatus
 
-    private weak var controllerReference: UIViewController?
+    private weak var controllerReference: ListViewController?
     private var progressView: ProgressView?
 
-    init(_ controllerReference: UIViewController) {
+    init(_ controllerReference: ListViewController) {
         self.controllerReference = controllerReference
         progressView = ProgressView((self.controllerReference?.view)!)
     }
@@ -114,6 +134,8 @@ private class ProgressObserver: ObserverType {
             progressView?.show()
         } else {
             progressView?.dismiss()
+            controllerReference?.tableView.refreshControl = nil
         }
     }
+    
 }

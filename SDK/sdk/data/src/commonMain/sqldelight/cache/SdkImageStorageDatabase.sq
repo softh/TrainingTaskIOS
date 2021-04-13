@@ -1,0 +1,16 @@
+CREATE TABLE CurrencyImageEntity  (
+    currencyId INTEGER NOT NULL,
+    content BLOB NOT NULL
+);
+
+clearStorage:
+DELETE FROM CurrencyImageEntity;
+
+insertImage:
+INSERT INTO CurrencyImageEntity(currencyId, content) VALUES (?, ?);
+
+getAllImages:
+SELECT * FROM CurrencyImageEntity;
+
+getImageByCurrencyId:
+SELECT * FROM CurrencyImageEntity WHERE currencyId = ? ;

@@ -7,8 +7,13 @@ import kotlin.coroutines.cancellation.CancellationException
  */
 interface CryptoCurrencyRepository {
 
-    @Throws(RepositoryException::class, CancellationException::class)
     suspend fun getCryptoCurrenciesList(countOfItems: Int) : List<CryptoCurrencyModel>
+
+    suspend fun startInitialization(countOfItems: Int, initializationProgressListener: RepositoryInitializationProgressListener? = null)
 }
 
 class RepositoryException(val errorCode: Int, val errorMessage: String?) : Exception(errorMessage)
+
+interface RepositoryInitializationProgressListener {
+    fun onProgress(currentStep: Int)
+}

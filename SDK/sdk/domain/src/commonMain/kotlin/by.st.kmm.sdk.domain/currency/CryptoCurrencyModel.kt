@@ -13,5 +13,6 @@ data class CryptoCurrencyModel(
     val percentChangeByWeek: Double,
     val percentChangeByMonth: Double,
     val totalCapitalization: Double,
-    val updatedDate: String
+    val updatedDate: String,
+    val logoData: ByteArray?
 )

@@ -15,7 +15,6 @@ class HostViewController: UITabBarController {
         let listViewController = UINavigationController(rootViewController: ListViewController())
         let converterViewController = ConverterViewController()
     
-        
         let listItem = UITabBarItem()
         listItem.title = NSLocalizedString("currencies_list_tab_label", comment: "")
         listItem.image = UIImage(named: "home_icon")

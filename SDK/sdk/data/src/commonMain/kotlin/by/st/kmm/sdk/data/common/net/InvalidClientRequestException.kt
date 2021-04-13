@@ -1,4 +1,4 @@
-package by.st.forms.sdk.data.common.net.exception
+package by.st.kmm.sdk.data.common.net
 
 import by.st.kmm.sdk.data.common.net.HttpException
 

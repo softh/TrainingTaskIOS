@@ -10,15 +10,21 @@ import CryptoCurrencySDK
 
 class CurrencyTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var nameView: UILabel!
+    @IBOutlet weak var nameView: UILabel!
     
-    @IBOutlet private weak var costView: UILabel!
-
+    @IBOutlet weak var costView: UILabel!
+    
+    @IBOutlet weak var logoView: UIImageView!
+    
     var currencyModel: CryptoCurrencyModel? {
         didSet {
             if let model = currencyModel {
                 nameView.text = model.name
                 costView.text = "$\(model.currentPrice.roundedToPlaces())"
+                if let imageData = model.logoData {
+                    logoView.image = UIImage(data: imageData.toData())
+                }
+                
             }
         }
     }

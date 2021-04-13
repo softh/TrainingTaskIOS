@@ -10,7 +10,7 @@ import RxSwift
 import CryptoCurrencySDK
 
 class InitializationViewModel : BaseViewModel {
-    private(set) lazy var initializationProgressSubject = PublishSubject<Double>()
+    private(set) lazy var initializationProgressSubject = PublishSubject<Int>()
     private(set) lazy var initializationCompleteSubject = PublishSubject<Bool>()
     
     private let sdk: CryptoSDKProtocol
@@ -31,15 +31,15 @@ class InitializationViewModel : BaseViewModel {
 }
 
 fileprivate class Listener : InitializationProgressListener {
-    private weak var progressSubject: PublishSubject<Double>?
+    private weak var progressSubject: PublishSubject<Int>?
     private let poolSize: Int
     
-    init(_ progressSubject: PublishSubject<Double>, _ poolSize: Int) {
+    init(_ progressSubject: PublishSubject<Int>, _ poolSize: Int) {
         self.progressSubject = progressSubject
         self.poolSize = poolSize
     }
     
     func onProgress(currentStep: Int32) {
-        progressSubject?.onNext(((Double(currentStep)/Double(poolSize)) * 100).rounded())
+        progressSubject?.onNext(Int(((Double(currentStep)/Double(poolSize)) * 100)))
     }
 }

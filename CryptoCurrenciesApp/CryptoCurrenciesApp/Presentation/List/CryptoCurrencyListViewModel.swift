@@ -19,7 +19,7 @@ class CryptoCurrencyListViewModel: BaseViewModel {
         self.sdk = sdk
     }
     
-    func loadCryptocurrenciesList(_ listSize: Int = 1500) {
+    func loadCryptocurrenciesList(_ listSize: Int) {
         postStartOperation()
         sdk.rx().getCryptoCurrenciesList(countOfItems: listSize)
             .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)

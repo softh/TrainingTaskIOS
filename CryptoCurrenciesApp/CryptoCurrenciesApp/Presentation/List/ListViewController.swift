@@ -10,20 +10,15 @@ import RxSwift
 import RxCocoa
 import CryptoCurrencySDK
 
-let url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200"
-let token = "07c16939-e6cc-4446-8053-283b35eb91fa"
-
 class ListViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 
     let cellId = "currencyCell"
 
-    private var refreshControl = UIRefreshControl()
+    var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
-    private(set) lazy var repository = CryptoCurrencyRepositoryImplementation(
-            networkDataSource: CryptoCurrencyNetworkSource(apiUrl: url, apiToken: token), cacheDataSource: CryptoCurrencyCacheDataSource()
-    )
+    
     
     private(set) lazy var viewModel = CryptoCurrencyListViewModel(sdk: createSDK())
     
@@ -32,7 +27,7 @@ class ListViewController: UIViewController {
           do {
             sdkInstance = try CryptoSDKBuilder()
             .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
-            .withApiToken(apiToken: "07c16939-e6cc-4446-8053-283b35eb91fa")
+            .withApiToken(apiToken: "3032f753-b744-4448-9cf1-bf6ae80dbb7c")
                 .withCachingType(cachingType: CachingType.inMemory)
                 .enableLogging(enable: true)
                 .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
@@ -91,7 +86,7 @@ class ListViewController: UIViewController {
     }
 
     func loadData() {
-        viewModel.loadCryptocurrenciesList()
+        viewModel.loadCryptocurrenciesList(20)
     }
     
 
@@ -144,10 +139,10 @@ private class ProgressObserver: ObserverType {
 
     typealias Element = BaseViewModel.OperationStatus
 
-    private weak var controllerReference: UIViewController?
+    private weak var controllerReference: ListViewController?
     private var progressView: ProgressView?
 
-    init(_ controllerReference: UIViewController) {
+    init(_ controllerReference: ListViewController) {
         self.controllerReference = controllerReference
         progressView = ProgressView((self.controllerReference?.view)!)
     }
@@ -162,6 +157,7 @@ private class ProgressObserver: ObserverType {
             progressView?.show()
         } else {
             progressView?.dismiss()
+            controllerReference?.tableView.refreshControl = nil
         }
     }
     

@@ -43,7 +43,7 @@ class InitializationViewController: UIViewController {
         do {
             sdkInstance = try CryptoSDKBuilder()
                 .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
-                .withApiToken(apiToken: "07c16939-e6cc-4446-8053-283b35eb91fa")
+                .withApiToken(apiToken: "3032f753-b744-4448-9cf1-bf6ae80dbb7c")
                 .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
                 .enableLogging(enable: true)
                 .build()
@@ -64,15 +64,16 @@ class InitializationViewController: UIViewController {
         }
         
         func on(_ event: Event<Bool>) {
-            controllerReference?.navigationController?.pushViewController(
-                   HostViewController(),
-                    animated: true
-            )
+            let sceneDelegate = controllerReference?.view.window?.windowScene?.delegate
+            if let delegate = sceneDelegate {
+                let castedDelegate = delegate as! SceneDelegate
+                castedDelegate.showHostViewController()
+            }
         }
     }
     
     private class InitializationProgressObserver: ObserverType {
-        typealias Element = Double
+        typealias Element = Int
 
         private weak var controllerReference: InitializationViewController?
 
@@ -80,7 +81,7 @@ class InitializationViewController: UIViewController {
             self.controllerReference = controllerReference
         }
 
-        func on(_ event: Event<Double>) {
+        func on(_ event: Event<Int>) {
             controllerReference?.ProgressView.text = "\(String(describing: event.element!))%"
         }
     }

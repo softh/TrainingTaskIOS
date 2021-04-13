@@ -1,11 +1,10 @@
 val libraryName = "CryptoCurrencySDK"
-val libraryVersion = "0.0.1-RC0"
+val libraryVersion = "1.0.0"
 
 plugins {
     plugin(Config.Dependencies.Plugins.androidLibrary)
     plugin(Config.Dependencies.Plugins.kotlinMultiplatform)
     plugin(Config.Dependencies.Plugins.kotlinAndroidExtensions)
-    kotlin("kapt")
 }
 
 kotlin {
@@ -19,7 +18,6 @@ kotlin {
             linkerOpts.add("-lsqlite3")
         }
     }
-    val koruVersion = "0.3.5"
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -27,17 +25,7 @@ kotlin {
 
                 api(project(":sdk:domain"))
                 api(project(":sdk:data"))
-
-                configurations.get("kapt").dependencies.add(
-                    org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency(
-                        "com.futuremind", "koru-processor", koruVersion
-                    )
-                )
             }
-        }
-
-        val iosMain by getting {
-            kotlin.srcDir("${buildDir.absolutePath}/generated/source/kaptKotlin/")
         }
     }
 }

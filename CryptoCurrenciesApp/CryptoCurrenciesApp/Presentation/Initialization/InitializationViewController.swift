@@ -13,20 +13,21 @@ import RxSwift
 
 class InitializationViewController: UIViewController {
     
-    @IBOutlet weak var ProgressView: UILabel!
+    @IBOutlet weak var progressView: UILabel!
     @IBOutlet weak var animationView: AnimationView!
     
     private let disposeBag = DisposeBag()
     
-    private(set) lazy var viewModel = InitializationViewModel(sdk: createSDK())
+    var viewModel = InitializationViewModel(sdk: SDKProvider.getSDK())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        progressView.text = "preparing_data_label".localized
         viewModel.initializationProgressSubject.subscribe(InitializationProgressObserver(self)).disposed(by: disposeBag)
         viewModel.initializationCompleteSubject.subscribe(InitializationCompleteObserver(self)).disposed(by: disposeBag)
         playAnimation()
-        viewModel.startInitialization(poolSize: 20)
+        viewModel.startInitialization(poolSize: SDKProvider.defaultCurrencyListSize)
         
     }
     
@@ -36,22 +37,6 @@ class InitializationViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
         animationView.play()
-    }
-    
-    private func createSDK() -> CryptoSDKProtocol {
-        var sdkInstance: CryptoSDKProtocol
-        do {
-            sdkInstance = try CryptoSDKBuilder()
-                .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
-                .withApiToken(apiToken: "3032f753-b744-4448-9cf1-bf6ae80dbb7c")
-                .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
-                .enableLogging(enable: true)
-                .build()
-            
-            return sdkInstance
-        } catch {
-            exit(-1)
-        }
     }
     
     private class InitializationCompleteObserver : ObserverType {
@@ -82,7 +67,7 @@ class InitializationViewController: UIViewController {
         }
 
         func on(_ event: Event<Int>) {
-            controllerReference?.ProgressView.text = "\(String(describing: event.element!))%"
+            controllerReference?.progressView.text = "\(String(describing: event.element!))%"
         }
     }
     

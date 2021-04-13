@@ -20,27 +20,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    private(set) lazy var viewModel = CryptoCurrencyListViewModel(sdk: createSDK())
-    
-    private func createSDK() -> CryptoSDKProtocol {
-        var sdkInstance: CryptoSDKProtocol
-          do {
-            sdkInstance = try CryptoSDKBuilder()
-            .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
-            .withApiToken(apiToken: "3032f753-b744-4448-9cf1-bf6ae80dbb7c")
-                .withCachingType(cachingType: CachingType.inMemory)
-                .enableLogging(enable: true)
-                .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
-                .withCacheLifeTime(milliseconds: 10000)
-            .build()
-            
-            return sdkInstance
-        } catch {
-            exit(-1)
-        }
-        
-        return sdkInstance
-    }
+    private(set) lazy var viewModel = CryptoCurrencyListViewModel(sdk: SDKProvider.getSDK())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +63,7 @@ class ListViewController: UIViewController {
     }
 
     func loadData() {
-        viewModel.loadCryptocurrenciesList(20)
+        viewModel.loadCryptocurrenciesList(SDKProvider.defaultCurrencyListSize)
     }
     
 

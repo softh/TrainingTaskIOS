@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="ProgressView" destination="yH3-dW-5d6" id="Q4f-di-fY3"/>
                 <outlet property="animationView" destination="c7q-vM-A8q" id="EQr-NE-qT0"/>
+                <outlet property="progressView" destination="yH3-dW-5d6" id="dpo-qq-6Pv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,9 +27,13 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c7q-vM-A8q" customClass="AnimationView" customModule="Lottie">
-                    <rect key="frame" x="87" y="384" width="240" height="128"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7q-vM-A8q" customClass="AnimationView" customModule="Lottie">
+                    <rect key="frame" x="87" y="328" width="240" height="240"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="dv4-g2-RCz"/>
+                        <constraint firstAttribute="width" constant="240" id="fZo-2g-vxQ"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

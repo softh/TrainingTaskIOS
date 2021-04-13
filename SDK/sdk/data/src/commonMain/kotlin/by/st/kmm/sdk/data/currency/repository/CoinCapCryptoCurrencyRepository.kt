@@ -51,11 +51,7 @@ class CoinCapCryptoCurrencyRepository(
     override suspend fun startInitialization(countOfItems: Int, initializationProgressListener: RepositoryInitializationProgressListener?) {
         var step = 0
         logoStorage.clearStorage()
-        val ids = remoteSource.getCryptoCurrencies(countOfItems, completionBlock = {}).data?.map { it.id } ?: throw RepositoryException(
-            0,
-            "Unexpected error"
-        )
-
+        val ids = getCryptoCurrenciesList(countOfItems).map { it.id }
         val logos = remoteSource.getCurrenciesLogo(ids.toIntArray()) {}
         logos.data?.values?.forEach { logo ->
             val payload = remoteSource.loadCurrencyLogo(logo.logoUrl)

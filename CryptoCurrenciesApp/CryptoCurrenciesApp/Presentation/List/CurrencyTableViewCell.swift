@@ -24,7 +24,6 @@ class CurrencyTableViewCell: UITableViewCell {
                 if let imageData = model.logoData {
                     logoView.image = UIImage(data: imageData.toData())
                 }
-                
             }
         }
     }

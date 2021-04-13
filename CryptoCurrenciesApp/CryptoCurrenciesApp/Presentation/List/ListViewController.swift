@@ -69,10 +69,7 @@ class ListViewController: UIViewController {
 
         tableView.rx.modelSelected(CryptoCurrencyModel.self)
                 .subscribe(onNext: { model in
-                    self.navigationController?.pushViewController(
-                            DetailsViewController(model: model),
-                            animated: true
-                    )
+                    self.present(DetailsViewController(model: model), animated: true, completion: nil)
                 }).disposed(by: disposeBag)
 
         viewModel.currenciesListSubject.bind(to: tableView.rx.items(cellIdentifier: cellId,

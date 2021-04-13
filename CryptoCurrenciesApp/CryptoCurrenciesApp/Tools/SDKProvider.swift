@@ -11,6 +11,7 @@ import CryptoCurrencySDK
 class SDKProvider {
     
     static let defaultCurrencyListSize = 50
+    private static let isPreparingCompleteKey = "isPreparingCompleteKey"
     
     private static var sdkInstance: CryptoSDKProtocol?
     
@@ -20,6 +21,15 @@ class SDKProvider {
             
         }
         return sdkInstance!
+    }
+    
+    static func isPreparingComplete() -> Bool {
+        return UserDefaults.standard.bool(forKey: isPreparingCompleteKey)
+    }
+    
+    static func markPreparingComplete() {
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: isPreparingCompleteKey)
     }
     
     private static func createSDK() -> CryptoSDKProtocol {

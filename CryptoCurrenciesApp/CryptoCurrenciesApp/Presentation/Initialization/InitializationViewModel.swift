@@ -20,7 +20,7 @@ class InitializationViewModel : BaseViewModel {
     }
     
     func startInitialization(poolSize: Int) {
-        sdk.startInitialization(countOfItems: Int32(poolSize), initializationProgressListener: Listener(initializationProgressSubject, poolSize), completionHandler_: { [self]models, error in
+        sdk.startInitialization(countOfItems: Int32(poolSize), initializationProgressListener: Listener(initializationProgressSubject, poolSize), completionHandler_: { _, error in
             if let sdkError = error {
                 self.postOperationError(sdkError)
             } else {

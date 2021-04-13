@@ -24,11 +24,29 @@ class InitializationViewController: UIViewController {
         super.viewDidLoad()
         
         progressView.text = "preparing_data_label".localized
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         viewModel.initializationProgressSubject.subscribe(InitializationProgressObserver(self)).disposed(by: disposeBag)
         viewModel.initializationCompleteSubject.subscribe(InitializationCompleteObserver(self)).disposed(by: disposeBag)
         playAnimation()
-        viewModel.startInitialization(poolSize: SDKProvider.defaultCurrencyListSize)
-        
+        if(!SDKProvider.isPreparingComplete()) {
+            viewModel.startInitialization(poolSize: SDKProvider.defaultCurrencyListSize)
+        } else {
+            navigateToNextScreen()
+        }
+    }
+    
+    private func navigateToNextScreen() {
+        let window = view.window
+        let windowScene = view.window?.windowScene
+        let sceneDelegate = view.window?.windowScene?.delegate
+        if let delegate = sceneDelegate {
+            let castedDelegate = delegate as! SceneDelegate
+            castedDelegate.showHostViewController()
+        }
     }
     
     private func playAnimation() {
@@ -49,11 +67,8 @@ class InitializationViewController: UIViewController {
         }
         
         func on(_ event: Event<Bool>) {
-            let sceneDelegate = controllerReference?.view.window?.windowScene?.delegate
-            if let delegate = sceneDelegate {
-                let castedDelegate = delegate as! SceneDelegate
-                castedDelegate.showHostViewController()
-            }
+            SDKProvider.markPreparingComplete()
+            controllerReference?.navigateToNextScreen()
         }
     }
     

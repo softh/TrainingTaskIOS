@@ -25,7 +25,7 @@ class ListViewController: UIViewController {
             networkDataSource: CryptoCurrencyNetworkSource(apiUrl: url, apiToken: token), cacheDataSource: CryptoCurrencyCacheDataSource()
     )
     
-    private(set) lazy var viewModel = CryptoCurrencyViewModel(sdk: createSDK())
+    private(set) lazy var viewModel = CryptoCurrencyListViewModel(sdk: createSDK())
     
     private func createSDK() -> CryptoSDKProtocol {
         var sdkInstance: CryptoSDKProtocol
@@ -35,6 +35,7 @@ class ListViewController: UIViewController {
             .withApiToken(apiToken: "07c16939-e6cc-4446-8053-283b35eb91fa")
                 .withCachingType(cachingType: CachingType.inMemory)
                 .enableLogging(enable: true)
+                .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
                 .withCacheLifeTime(milliseconds: 10000)
             .build()
             
@@ -48,6 +49,7 @@ class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initView()
         loadData()
     }

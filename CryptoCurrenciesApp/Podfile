@@ -10,5 +10,5 @@ target 'CryptoCurrenciesApp' do
   pod 'RxAlamofire'
   pod 'RxCocoa'
   pod 'AlamofireObjectMapper'
-
+  pod 'lottie-ios'
 end

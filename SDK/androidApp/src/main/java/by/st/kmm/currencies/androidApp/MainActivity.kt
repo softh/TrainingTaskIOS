@@ -1,16 +1,21 @@
 package by.st.kmm.currencies.androidApp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import android.widget.Button
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import by.st.crypto.sdk.CryptoSDKBuilder
-import by.st.crypto.sdk.CryptoViewModel
-import by.st.kmm.sdk.data.currency.repository.CoinCapCryptoCurrencyRepository
+import by.st.crypto.sdk.InitializationProgressListener
+import by.st.kmm.sdk.data.cache.DatabaseDriverFactory
 import by.st.kmm.sdk.data.currency.source.local.memory.CryptoCurrencyMemorySource
 import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyNetworkSource
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity() {
     @InternalCoroutinesApi
@@ -27,14 +32,33 @@ class MainActivity : AppCompatActivity() {
         val localSource = CryptoCurrencyMemorySource(10000)
 
 
-        val repository = CoinCapCryptoCurrencyRepository(localSource, remoteSource)
-
         findViewById<View>(R.id.button).setOnClickListener {
             val sdk = CryptoSDKBuilder()
                 .withApiEndpoint("https://pro-api.coinmarketcap.com/v1")
                 .withApiToken("07c16939-e6cc-4446-8053-283b35eb91fa")
                 .enableLogging(true)
+                .withDatabaseDriverFactory(DatabaseDriverFactory(this))
                 .build()
+
+
+            GlobalScope.launch(Dispatchers.Main) {
+                sdk.startInitialization(object : InitializationProgressListener {
+                    override fun onProgress(currentStep: Int, totalSteps: Int) {
+
+                        findViewById<Button>(R.id.button).text = "$currentStep/$totalSteps"
+
+                    }
+                })
+
+                val a = sdk.getCryptoCurrenciesList()
+                val b = 0
+            }
         }
+    }
+
+
+    fun setImageViewWithByteArray(view: ImageView, data: ByteArray) {
+        val bitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
+        view.setImageBitmap(bitmap)
     }
 }

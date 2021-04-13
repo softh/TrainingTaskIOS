@@ -5,10 +5,10 @@ import by.st.kmm.sdk.data.currency.CryptoCurrencyDto
 import by.st.kmm.sdk.data.currency.CurrencyLogoDto
 import by.st.kmm.sdk.data.response.BaseListResponse
 import by.st.kmm.sdk.data.response.BaseMapResponse
+import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 import io.ktor.utils.io.core.*
-
-private const val MAX_CURRENCIES_LIST_SIZE = 500
 
 /**
  * @author RamashkaAE
@@ -31,11 +31,10 @@ class CryptoCurrencyNetworkSource(
         countOfElements: Int,
         completionBlock: (response: BaseListResponse<CryptoCurrencyDto>) -> Unit
     ): BaseListResponse<CryptoCurrencyDto> {
-        val count = if (countOfElements > MAX_CURRENCIES_LIST_SIZE) MAX_CURRENCIES_LIST_SIZE else countOfElements
         return getHttpClient().use {
             val result = it.get {
                 url("$apiEndpoint/cryptocurrency/listings/latest")
-                parameter("limit", count)
+                parameter("limit", countOfElements)
             } as BaseListResponse<CryptoCurrencyDto>
 
             completionBlock.invoke(result)
@@ -59,8 +58,12 @@ class CryptoCurrencyNetworkSource(
         }
     }
 
-    private fun getAllIdsParameter(): String {
-        val scope = 1..MAX_CURRENCIES_LIST_SIZE
-        return scope.joinToString(separator = ",")
+    override suspend fun loadCurrencyLogo(logoUrl: String) : ByteArray{
+        return getHttpClient().use {
+            val response: ByteArray = it.get {
+                url(logoUrl)
+            }
+            response
+        }
     }
 }

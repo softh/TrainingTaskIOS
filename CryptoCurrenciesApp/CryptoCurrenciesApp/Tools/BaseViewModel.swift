@@ -16,6 +16,10 @@ class BaseViewModel {
     func postFinishOperation() {
         progressSubject.onNext(OperationStatus.finished)
     }
+    
+    func postOperationError(_ error: Error) {
+        errorSubject.onNext(error)
+    }
 
     func baseErrorConsumer(_ error: Error) {
         postFinishOperation()

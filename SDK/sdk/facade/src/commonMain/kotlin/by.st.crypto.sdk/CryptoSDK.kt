@@ -1,5 +1,7 @@
 package by.st.crypto.sdk
 
+import by.st.kmm.sdk.data.cache.DatabaseDriverFactory
+import by.st.kmm.sdk.data.cache.LogoStorageDatabase
 import by.st.kmm.sdk.data.currency.repository.CoinCapCryptoCurrencyRepository
 import by.st.kmm.sdk.data.currency.source.local.CryptoCurrencyLocalDataSource
 import by.st.kmm.sdk.data.currency.source.local.memory.CryptoCurrencyMemorySource
@@ -7,6 +9,7 @@ import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyNetworkSource
 import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyRemoteDataSource
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyRepository
+import by.st.kmm.sdk.domain.currency.RepositoryInitializationProgressListener
 
 private const val DEFAULT_CACHE_LIFETIME = 10000L
 
@@ -23,6 +26,13 @@ class CryptoSDK(private val dataRepository: CryptoCurrencyRepository) : CryptoSD
         return dataRepository.getCryptoCurrenciesList(countOfItems)
     }
 
+    override suspend fun startInitialization(countOfItems: Int, initializationProgressListener: InitializationProgressListener?) {
+        dataRepository.startInitialization(countOfItems, object: RepositoryInitializationProgressListener {
+            override fun onProgress(currentStep: Int) {
+                initializationProgressListener?.onProgress(currentStep)
+            }
+        })
+    }
 }
 
 /**
@@ -34,6 +44,8 @@ class CryptoSDKBuilder {
     private lateinit var apiEndpoint: String
 
     private lateinit var apiToken: String
+
+    private lateinit var databaseDriverFactory: DatabaseDriverFactory
 
     private var isLogEnabled: Boolean = false
 
@@ -80,6 +92,10 @@ class CryptoSDKBuilder {
         this.cacheLifetime = milliseconds
     }
 
+    fun withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory) = apply {
+        this.databaseDriverFactory = databaseDriverFactory
+    }
+
     /**
      * Builds [CryptoSDK] instance with preconfigured parameters.
      * If one of the required parameters was not specified, throws [ConfigurationException]
@@ -97,7 +113,7 @@ class CryptoSDKBuilder {
         val remoteDataSource: CryptoCurrencyRemoteDataSource =
             CryptoCurrencyNetworkSource(apiEndpoint, apiToken, isLogEnabled)
 
-        return CryptoSDK(CoinCapCryptoCurrencyRepository(localSource, remoteDataSource))
+        return CryptoSDK(CoinCapCryptoCurrencyRepository(localSource, remoteDataSource, LogoStorageDatabase(databaseDriverFactory)))
     }
 
     private fun checkConfiguration() {
@@ -107,6 +123,10 @@ class CryptoSDKBuilder {
 
         if (!::apiToken.isInitialized) {
             throw ConfigurationException(ConfigurationException.getMessage(::apiToken.name))
+        }
+
+        if (!::databaseDriverFactory.isInitialized) {
+            throw ConfigurationException(ConfigurationException.getMessage(::databaseDriverFactory.name))
         }
     }
 }

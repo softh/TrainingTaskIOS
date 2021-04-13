@@ -7,7 +7,7 @@ import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.RepositoryException
 import kotlin.coroutines.cancellation.CancellationException
 
-private const val DEFAULT_COUNT_OF_ITEMS = 200
+internal const val DEFAULT_COUNT_OF_ITEMS = 30
 
 /**
  * @author RamashkaAE
@@ -22,4 +22,10 @@ interface CryptoSDKProtocol {
         RepositoryException::class
     )
     suspend fun getCryptoCurrenciesList(countOfItems: Int = DEFAULT_COUNT_OF_ITEMS): List<CryptoCurrencyModel>
+
+    suspend fun startInitialization(countOfItems: Int, initializationProgressListener: InitializationProgressListener? = null)
+}
+
+interface InitializationProgressListener {
+    fun onProgress(currentStep: Int)
 }

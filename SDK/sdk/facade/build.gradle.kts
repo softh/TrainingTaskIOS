@@ -5,6 +5,7 @@ plugins {
     plugin(Config.Dependencies.Plugins.androidLibrary)
     plugin(Config.Dependencies.Plugins.kotlinMultiplatform)
     plugin(Config.Dependencies.Plugins.kotlinAndroidExtensions)
+    kotlin("kapt")
 }
 
 kotlin {
@@ -18,7 +19,7 @@ kotlin {
             linkerOpts.add("-lsqlite3")
         }
     }
-
+    val koruVersion = "0.3.5"
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -26,7 +27,17 @@ kotlin {
 
                 api(project(":sdk:domain"))
                 api(project(":sdk:data"))
+
+                configurations.get("kapt").dependencies.add(
+                    org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency(
+                        "com.futuremind", "koru-processor", koruVersion
+                    )
+                )
             }
+        }
+
+        val iosMain by getting {
+            kotlin.srcDir("${buildDir.absolutePath}/generated/source/kaptKotlin/")
         }
     }
 }
@@ -47,7 +58,7 @@ val buildXCFramework by tasks.creating(Exec::class) {
         "${rootProject.projectDir.resolve("scripts/buildXCFramework.sh")}",
         "${buildDir.resolve("bin/iosArm64/releaseFramework/$libraryName.framework")}",
         "${buildDir.resolve("bin/iosX64/releaseFramework/$libraryName.framework")}",
-        "${rootProject.buildDir}/FormsSimpleSDK.xcframework"
+        "${rootProject.buildDir}/$libraryName.xcframework"
     )
 }
 

@@ -1,8 +1,8 @@
 package by.st.crypto.sdk
 
-import by.st.forms.sdk.data.common.net.exception.InvalidClientRequestException
-import by.st.forms.sdk.data.common.net.exception.RedirectRequestException
-import by.st.forms.sdk.data.common.net.exception.ServerInternalErrorException
+import by.st.kmm.sdk.data.common.net.InvalidClientRequestException
+import by.st.kmm.sdk.data.common.net.RedirectRequestException
+import by.st.kmm.sdk.data.common.net.ServerInternalErrorException
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.RepositoryException
 import kotlin.coroutines.cancellation.CancellationException

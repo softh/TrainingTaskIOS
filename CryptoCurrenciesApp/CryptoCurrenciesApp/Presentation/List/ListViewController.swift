@@ -30,10 +30,12 @@ class ListViewController: UIViewController {
     private func createSDK() -> CryptoSDKProtocol {
         var sdkInstance: CryptoSDKProtocol
           do {
-            sdkInstance = try CryptoSDK.Builder()
+            sdkInstance = try CryptoSDKBuilder()
             .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
             .withApiToken(apiToken: "07c16939-e6cc-4446-8053-283b35eb91fa")
-            .withCachingType(cachingType: CryptoSDK.CachingType.inMemory)
+                .withCachingType(cachingType: CachingType.inMemory)
+                .enableLogging(enable: true)
+                .withCacheLifeTime(milliseconds: 10000)
             .build()
             
             return sdkInstance
@@ -89,6 +91,31 @@ class ListViewController: UIViewController {
     func loadData() {
         viewModel.loadCryptocurrenciesList()
     }
+    
+
+    func createSingle<T>(
+        scope: Kotlinx_coroutines_coreCoroutineScope,
+        suspendWrapper: SuspendWrapper<T>
+    ) -> Single<T> {
+        return Single<T>.create { single in
+            let job: Kotlinx_coroutines_coreJob = suspendWrapper.subscribe(
+                scope: scope,
+                onSuccess: { item in single(.success(item!)) },
+                onThrow: { error in single(.error(KotlinError(error))) }
+            )
+            return Disposables.create { job.cancel(cause: nil) }
+        }
+    }
+    
+    class KotlinError: LocalizedError {
+        let throwable: KotlinThrowable
+        init(_ throwable: KotlinThrowable) {
+            self.throwable = throwable
+        }
+        var errorDescription: String? {
+            get { throwable.message }
+        }
+    }
 
     func successConsumer(response: [CryptoCurrencyModel]) {
         print(response.count)
@@ -135,4 +162,5 @@ private class ProgressObserver: ObserverType {
             progressView?.dismiss()
         }
     }
+    
 }

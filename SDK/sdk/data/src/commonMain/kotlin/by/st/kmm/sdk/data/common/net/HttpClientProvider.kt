@@ -1,4 +1,4 @@
-package by.st.kmm.sdk.data.network
+package by.st.kmm.sdk.data.common.net
 
 import io.ktor.client.*
 

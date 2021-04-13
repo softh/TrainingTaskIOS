@@ -31,3 +31,19 @@ class CryptoSDKRxWrapper {
         })
     }
 }
+
+extension Single {
+    static func fromCompletionHandler<T>(_ completiomHandler: (T?, Error?)) -> Single<T> {
+        return Single<T>.create(subscribe: {event in
+            if let result = completiomHandler.0 {
+                event(.success(result))
+            }
+            
+            if let sdkError = completiomHandler.1 {
+                event(.error(sdkError))
+            }
+            
+            return Disposables.create()
+        })
+    }
+}

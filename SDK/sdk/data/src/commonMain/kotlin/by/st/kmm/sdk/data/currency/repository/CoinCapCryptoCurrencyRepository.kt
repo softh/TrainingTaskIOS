@@ -3,11 +3,10 @@ package by.st.kmm.sdk.data.currency.repository
 import by.st.kmm.sdk.data.currency.source.local.CryptoCurrencyLocalDataSource
 import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyRemoteDataSource
 import by.st.kmm.sdk.data.currency.toDomainModel
-import by.st.kmm.sdk.data.response.BaseResponse
+import by.st.kmm.sdk.data.response.BaseListResponse
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyRepository
 import by.st.kmm.sdk.domain.currency.RepositoryException
-import kotlinx.coroutines.flow.flowOf
 
 /**
  * @author RamashkaAE
@@ -34,7 +33,7 @@ class CoinCapCryptoCurrencyRepository(
         } ?: return remoteSource.getCryptoCurrencies(countOfItems, ::checkResponse).data.toDomainModel()
     }
 
-    private fun checkResponse(response: BaseResponse<*>) {
+    private fun checkResponse(response: BaseListResponse<*>) {
         if (response.responseStatus.errorCode != 0) {
             throw RepositoryException(response.responseStatus.errorCode, response.responseStatus.errorMessage)
         }

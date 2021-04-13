@@ -7,10 +7,9 @@ import kotlinx.serialization.Serializable
  * @author RamshkaAE
  */
 @Serializable
-data class BaseResponse<T>(
-
+data class BaseMapResponse<T>(
     @SerialName("data")
-    val data: List<T>?,
+    val data: Map<String, T>?,
 
     @SerialName("status")
     val responseStatus: ResponseStatusDto

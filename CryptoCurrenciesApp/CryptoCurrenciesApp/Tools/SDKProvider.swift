@@ -11,7 +11,10 @@ import CryptoCurrencySDK
 class SDKProvider {
     
     static let defaultCurrencyListSize = 50
+    
     private static let isPreparingCompleteKey = "isPreparingCompleteKey"
+    
+    private static let cacheLifetime: Int64 = 20000
     
     private static var sdkInstance: CryptoSDKProtocol?
     
@@ -41,7 +44,7 @@ class SDKProvider {
                 .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
                 .enableLogging(enable: true)
                 .withCachingType(cachingType: .inMemory)
-                .withCacheLifeTime(milliseconds: 20000)
+                .withCacheLifeTime(milliseconds: cacheLifetime)
                 .build()
             
             return sdkInstance

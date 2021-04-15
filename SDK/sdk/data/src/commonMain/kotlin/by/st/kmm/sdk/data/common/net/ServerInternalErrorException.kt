@@ -1,6 +1,4 @@
-package by.st.forms.sdk.data.common.net.exception
-
-import by.st.kmm.sdk.data.common.net.HttpException
+package by.st.kmm.sdk.data.common.net
 
 /**
  * Thrown if the server returned 5xx status code

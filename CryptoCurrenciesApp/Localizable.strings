@@ -1,3 +1,9 @@
 "currencies_list_tab_label" = "List";
 "currencies_converter_tab_label" = "Converter";
 "common_loading_text" = "Please wait...";
+
+"currency_usd_symbol" = "$";
+"currency_crypto_capitalization_label" = "Total capitalization: ";
+"currency_crypto_current_price_label" = "Current price: ";
+
+"preparing_data_label" = "Preparing data...";

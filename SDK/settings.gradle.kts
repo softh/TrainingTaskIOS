@@ -7,7 +7,7 @@ pluginManagement {
     }
     
 }
-rootProject.name = "CryptoCurrenciesApp"
+rootProject.name = "CryptoCurrenciesSDK"
 
 
 include(":androidApp")

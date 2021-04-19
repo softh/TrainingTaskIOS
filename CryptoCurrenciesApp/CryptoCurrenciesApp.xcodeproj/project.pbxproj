@@ -33,6 +33,7 @@
 		BFD20192262600A7001B2179 /* InitializationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD20191262600A7001B2179 /* InitializationViewModel.swift */; };
 		BFD2019D26261CDF001B2179 /* CryptoCurrencyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD2019C26261CDF001B2179 /* CryptoCurrencyListViewModel.swift */; };
 		BFD201DA26264BA7001B2179 /* SDKProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD201D926264BA7001B2179 /* SDKProvider.swift */; };
+		BFF922C5262DDF620010C6AA /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF922C4262DDF620010C6AA /* ConverterViewModel.swift */; };
 		F271936ADC895B5BF7CED114 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2719EBA955FB7FE585F74AD /* ConverterViewController.swift */; };
 		F27193D2F75E2CDC5223702D /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2719915A5FB5FA7E54B73E9 /* ListViewController.xib */; };
 		F27197AE7E22CB59F39F1251 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2719AE611848B1E7CBFA33D /* Double+.swift */; };
@@ -84,6 +85,7 @@
 		BFD20191262600A7001B2179 /* InitializationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationViewModel.swift; sourceTree = "<group>"; };
 		BFD2019C26261CDF001B2179 /* CryptoCurrencyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyListViewModel.swift; sourceTree = "<group>"; };
 		BFD201D926264BA7001B2179 /* SDKProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKProvider.swift; sourceTree = "<group>"; };
+		BFF922C4262DDF620010C6AA /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
 		F2719915A5FB5FA7E54B73E9 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		F2719A2D17F2032FD95FD7E0 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F2719AE611848B1E7CBFA33D /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				F2719EBA955FB7FE585F74AD /* ConverterViewController.swift */,
 				F2719DFCD85517CF5A1D058E /* ConverterViewController.xib */,
+				BFF922C4262DDF620010C6AA /* ConverterViewModel.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				BF0FD65E25B9F34D006D4E81 /* SceneDelegate.swift in Sources */,
 				BF505D8125DAF1A2006E8FF6 /* ProgressView.swift in Sources */,
 				BFB5CD1725D1B7A70082FBE8 /* Date+.swift in Sources */,
+				BFF922C5262DDF620010C6AA /* ConverterViewModel.swift in Sources */,
 				F271936ADC895B5BF7CED114 /* ConverterViewController.swift in Sources */,
 				BFD20192262600A7001B2179 /* InitializationViewModel.swift in Sources */,
 				F2719A2BE95B131E9AE9AD04 /* ListViewController.swift in Sources */,

@@ -10,7 +10,7 @@ import CryptoCurrencySDK
 
 class SDKProvider {
     
-    static let defaultCurrencyListSize = 300
+    static let defaultCurrencyListSize = 50
     
     private static let isPreparingCompleteKey = "isPreparingCompleteKey"
     

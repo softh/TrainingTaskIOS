@@ -19,7 +19,6 @@ class ListViewController: UIViewController {
     var refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     
-    
     private(set) lazy var viewModel = CryptoCurrencyListViewModel(sdk: SDKProvider.getSDK())
 
     override func viewDidLoad() {

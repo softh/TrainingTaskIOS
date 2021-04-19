@@ -5,6 +5,8 @@ import by.st.kmm.sdk.data.common.net.RedirectRequestException
 import by.st.kmm.sdk.data.common.net.ServerInternalErrorException
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.RepositoryException
+import com.badoo.reaktive.observable.ObservableWrapper
+import com.badoo.reaktive.single.SingleWrapper
 import kotlin.coroutines.cancellation.CancellationException
 
 internal const val DEFAULT_COUNT_OF_ITEMS = 300
@@ -28,7 +30,7 @@ interface CryptoSDKProtocol {
         RepositoryException::class,
         SDKException::class
     )
-    suspend fun getCryptoCurrenciesList(countOfItems: Int = DEFAULT_COUNT_OF_ITEMS): List<CryptoCurrencyModel>
+    fun getCryptoCurrenciesList(countOfItems: Int = DEFAULT_COUNT_OF_ITEMS): SingleWrapper<List<CryptoCurrencyModel>>
 
     /**
      * Starts sdk initialization (for example caching, image processing etc) for [countOfItems] count of items
@@ -44,7 +46,7 @@ interface CryptoSDKProtocol {
         RepositoryException::class,
         SDKException::class
     )
-    suspend fun startInitialization(countOfItems: Int = DEFAULT_COUNT_OF_ITEMS, initializationProgressListener: InitializationProgressListener? = null)
+    fun startInitialization(countOfItems: Int = DEFAULT_COUNT_OF_ITEMS) : ObservableWrapper<Int>
 
     /**
      * Converts price of one crypto currency by [sourceCurrencyId] to other currency by [targetCurrencyId]
@@ -58,7 +60,7 @@ interface CryptoSDKProtocol {
         RepositoryException::class,
         SDKException::class
     )
-    suspend fun convert(sourceCurrencyId: Int, targetCurrencyId: Int) : Double
+    fun convert(sourceCurrencyId: Int, targetCurrencyId: Int) : Double
 }
 
 /**

@@ -1,3 +1,3 @@
-package by.st.crypto.sdk.tools.concurency
+package by.st.crypto.sdk.tools.concurrency
 
 actual fun <T> T.freeze(): T = this.freeze()

@@ -21,9 +21,9 @@ class CryptoCurrencyListViewModel: BaseViewModel {
     
     func loadCryptocurrenciesList(_ listSize: Int) {
         postStartOperation()
-        sdk.rx().getCryptoCurrenciesList(countOfItems: listSize)
-            .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
-            .disposed(by: disposeBag)
+//        sdk.rx().getCryptoCurrenciesList(countOfItems: listSize)
+//            .subscribe(onSuccess: loadListSuccessConsumer, onError: baseErrorConsumer)
+//            .disposed(by: disposeBag)
     }
     
     private func loadListSuccessConsumer(value: [CryptoCurrencyModel]) {

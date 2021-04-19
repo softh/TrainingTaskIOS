@@ -41,18 +41,20 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
 
-            GlobalScope.launch(Dispatchers.Main) {
-                sdk.startInitialization(object : InitializationProgressListener {
-                    override fun onProgress(currentStep: Int, totalSteps: Int) {
+            sdk.getCryptoCurrenciesList(20).subscribe(isThreadLocal = false, onSuccess = {}, onError = {})
 
-                        findViewById<Button>(R.id.button).text = "$currentStep/$totalSteps"
-
-                    }
-                })
-
-                val a = sdk.getCryptoCurrenciesList()
-                val b = 0
-            }
+//            GlobalScope.launch(Dispatchers.Main) {
+//                sdk.startInitialization(object : InitializationProgressListener {
+//                    override fun onProgress(currentStep: Int, totalSteps: Int) {
+//
+//                        findViewById<Button>(R.id.button).text = "$currentStep/$totalSteps"
+//
+//                    }
+//                })
+//
+//                val a = sdk.getCryptoCurrenciesList()
+//                val b = 0
+//            }
         }
     }
 

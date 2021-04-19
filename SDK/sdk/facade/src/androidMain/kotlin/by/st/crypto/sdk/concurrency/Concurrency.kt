@@ -1,4 +1,4 @@
-package by.st.crypto.sdk.tools.concurency
+package by.st.crypto.sdk.tools.concurrency
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

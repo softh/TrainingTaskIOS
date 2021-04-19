@@ -35,8 +35,20 @@ class InitializationViewController: UIViewController {
         if(!SDKProvider.isPreparingComplete()) {
             viewModel.startInitialization(poolSize: SDKProvider.defaultCurrencyListSize)
         } else {
-            navigateToNextScreen()
+            //navigateToNextScreen()
         }
+        
+        do {
+            try SDKProvider.getSDK().getCryptoCurrenciesList(countOfItems_: 20).subscribe(isThreadLocal: true) { result in
+                let a = 0
+            }
+            
+        } catch {
+            
+        }
+        
+       
+
     }
     
     private func navigateToNextScreen() {

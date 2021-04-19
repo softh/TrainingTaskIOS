@@ -5,11 +5,20 @@ import by.st.kmm.sdk.data.cache.LogoStorageDatabase
 import by.st.kmm.sdk.data.currency.repository.CoinCapCryptoCurrencyRepository
 import by.st.kmm.sdk.data.currency.source.local.CryptoCurrencyLocalDataSource
 import by.st.kmm.sdk.data.currency.source.local.memory.CryptoCurrencyMemorySource
+import by.st.kmm.sdk.data.currency.source.local.memory.EmptyStubCurrencyMemorySource
 import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyNetworkSource
 import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyRemoteDataSource
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyRepository
-import by.st.kmm.sdk.domain.currency.RepositoryInitializationProgressListener
+import com.badoo.reaktive.observable.ObservableWrapper
+import com.badoo.reaktive.observable.observableOf
+import com.badoo.reaktive.scheduler.ioScheduler
+import com.badoo.reaktive.scheduler.mainScheduler
+import com.badoo.reaktive.single.SingleWrapper
+import com.badoo.reaktive.single.observeOn
+import com.badoo.reaktive.single.subscribeOn
+import com.badoo.reaktive.single.wrap
+import com.badoo.reaktive.subject.publish.publishSubject
 
 private const val DEFAULT_CACHE_LIFETIME = 10000L
 
@@ -22,28 +31,34 @@ private const val DEFAULT_CACHE_LIFETIME = 10000L
  */
 class CryptoSDK(private val dataRepository: CryptoCurrencyRepository) : CryptoSDKProtocol {
 
-    override suspend fun getCryptoCurrenciesList(countOfItems: Int): List<CryptoCurrencyModel> {
+    override fun getCryptoCurrenciesList(countOfItems: Int): SingleWrapper<List<CryptoCurrencyModel>> {
         return dataRepository.getCryptoCurrenciesList(countOfItems)
+            .subscribeOn(ioScheduler)
+            .observeOn(mainScheduler)
+            .wrap()
     }
 
-    override suspend fun startInitialization(countOfItems: Int, initializationProgressListener: InitializationProgressListener?) {
-        dataRepository.startInitialization(countOfItems, object: RepositoryInitializationProgressListener {
-            override fun onProgress(currentStep: Int) {
-                initializationProgressListener?.onProgress(currentStep)
-            }
-        })
+    override fun startInitialization(countOfItems: Int): ObservableWrapper<Int> {
+        return ObservableWrapper(observableOf())
+//        dataRepository.startInitialization(countOfItems, object: RepositoryInitializationProgressListener {
+//            override fun onProgress(currentStep: Int) {
+//                initializationProgressListener?.onProgress(currentStep)
+//            }
+//        })
     }
 
-    override suspend fun convert(sourceCurrencyId: Int, targetCurrencyId: Int): Double {
-        val allCurrencies = getCryptoCurrenciesList()
-        val sourceCurrency = allCurrencies.find { it.id == sourceCurrencyId }
-        val targetCurrency = allCurrencies.find { it.id == targetCurrencyId }
+    override fun convert(sourceCurrencyId: Int, targetCurrencyId: Int): Double {
+//        val allCurrencies = getCryptoCurrenciesList()
+//        val sourceCurrency = allCurrencies.find { it.id == sourceCurrencyId }
+//        val targetCurrency = allCurrencies.find { it.id == targetCurrencyId }
+//
+//        if(sourceCurrency == null || targetCurrency == null) {
+//            throw SDKException("One or more parameters isn't initialize")
+//        }
+//
+//        return sourceCurrency.currentPrice / targetCurrency.currentPrice
 
-        if(sourceCurrency == null || targetCurrency == null) {
-            throw SDKException("One or more parameters isn't initialize")
-        }
-
-        return sourceCurrency.currentPrice / targetCurrency.currentPrice
+        return 0.0
     }
 }
 
@@ -125,7 +140,12 @@ class CryptoSDKBuilder {
         val remoteDataSource: CryptoCurrencyRemoteDataSource =
             CryptoCurrencyNetworkSource(apiEndpoint, apiToken, isLogEnabled)
 
-        return CryptoSDK(CoinCapCryptoCurrencyRepository(localSource, remoteDataSource, LogoStorageDatabase(databaseDriverFactory)))
+        return CryptoSDK(
+            CoinCapCryptoCurrencyRepository(
+                localSource ?: EmptyStubCurrencyMemorySource(),
+                remoteDataSource, LogoStorageDatabase(databaseDriverFactory)
+            )
+        )
     }
 
     private fun checkConfiguration() {

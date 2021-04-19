@@ -1,4 +1,4 @@
-package by.st.crypto.sdk.tools.concurency//package by.st.crypto.sdk.tools.concurency
+package by.st.crypto.sdk.tools.concurrency//package by.st.crypto.sdk.tools.concurency
 //
 //import kotlin.native.concurrent.freeze
 //import kotlinx.coroutines.Job

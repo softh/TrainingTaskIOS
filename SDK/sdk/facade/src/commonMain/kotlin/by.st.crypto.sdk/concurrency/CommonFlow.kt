@@ -1,4 +1,4 @@
-package by.st.crypto.sdk.tools.concurency
+package by.st.crypto.sdk.tools.concurrency
 
 import com.squareup.sqldelight.db.Closeable
 import kotlinx.coroutines.CoroutineScope

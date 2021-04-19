@@ -20,13 +20,13 @@ class InitializationViewModel : BaseViewModel {
     }
     
     func startInitialization(poolSize: Int) {
-        sdk.startInitialization(countOfItems: Int32(poolSize), initializationProgressListener: Listener(initializationProgressSubject, poolSize), completionHandler_: { _, error in
-            if let sdkError = error {
-                self.postOperationError(sdkError)
-            } else {
-                self.initializationCompleteSubject.onNext(true)
-            }
-        })
+//        sdk.startInitialization(countOfItems: Int32(poolSize), initializationProgressListener: Listener(initializationProgressSubject, poolSize), completionHandler_: { _, error in
+//            if let sdkError = error {
+//                self.postOperationError(sdkError)
+//            } else {
+//                self.initializationCompleteSubject.onNext(true)
+//            }
+//        })
     }
 }
 

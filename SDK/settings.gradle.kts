@@ -14,5 +14,6 @@ include(":androidApp")
 include(":sdk")
 include(":sdk:data")
 include(":sdk:domain")
+include(":sdk:tools")
 include(":sdk:facade")
 

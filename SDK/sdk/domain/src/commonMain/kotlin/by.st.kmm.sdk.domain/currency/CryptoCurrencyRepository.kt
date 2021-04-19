@@ -1,19 +1,16 @@
 package by.st.kmm.sdk.domain.currency
 
-import kotlin.coroutines.cancellation.CancellationException
+import com.badoo.reaktive.observable.Observable
+import com.badoo.reaktive.single.Single
 
 /**
  * @author RamashkaAE
  */
 interface CryptoCurrencyRepository {
 
-    suspend fun getCryptoCurrenciesList(countOfItems: Int) : List<CryptoCurrencyModel>
+    fun getCryptoCurrenciesList(countOfItems: Int) : Single<List<CryptoCurrencyModel>>
 
-    suspend fun startInitialization(countOfItems: Int, initializationProgressListener: RepositoryInitializationProgressListener? = null)
+    fun startInitialization(countOfItems: Int) : Observable<Int>
 }
 
 class RepositoryException(val errorCode: Int, val errorMessage: String?) : Exception(errorMessage)
-
-interface RepositoryInitializationProgressListener {
-    fun onProgress(currentStep: Int)
-}

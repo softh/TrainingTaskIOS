@@ -4,20 +4,16 @@ import by.st.kmm.sdk.data.currency.CryptoCurrencyDto
 import by.st.kmm.sdk.data.currency.CurrencyLogoDto
 import by.st.kmm.sdk.data.response.BaseListResponse
 import by.st.kmm.sdk.data.response.BaseMapResponse
+import com.badoo.reaktive.single.Single
 
 /**
  * @author RamashkaAE
  */
 interface CryptoCurrencyRemoteDataSource {
 
-    suspend fun getCryptoCurrencies(
-        countOfElements: Int,
-        completionBlock: (response: BaseListResponse<CryptoCurrencyDto>) -> Unit
-    ): BaseListResponse<CryptoCurrencyDto>
+    fun getCryptoCurrencies(countOfElements: Int): Single<BaseListResponse<CryptoCurrencyDto>>
 
-    suspend fun getCurrenciesLogo(currencyIds: IntArray,
-        completionBlock: (response: BaseMapResponse<CurrencyLogoDto>) -> Unit
-    ): BaseMapResponse<CurrencyLogoDto>
+    fun getCurrenciesLogo(currencyIds: IntArray): Single<BaseMapResponse<CurrencyLogoDto>>
 
-    suspend fun loadCurrencyLogo(logoUrl: String) : ByteArray
+    fun loadCurrencyLogo(logoUrl: String) : Single<ByteArray>
 }

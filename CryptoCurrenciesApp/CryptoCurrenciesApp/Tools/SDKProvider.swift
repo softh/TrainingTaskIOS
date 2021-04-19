@@ -43,7 +43,7 @@ class SDKProvider {
                 .withApiToken(apiToken: "3032f753-b744-4448-9cf1-bf6ae80dbb7c")
                 .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
                 .enableLogging(enable: true)
-                .withCachingType(cachingType: .inMemory)
+                .withCachingType(cachingType: .none)
                 .withCacheLifeTime(milliseconds: cacheLifetime)
                 .build()
             

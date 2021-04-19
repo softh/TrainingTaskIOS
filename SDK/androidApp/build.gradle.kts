@@ -12,6 +12,7 @@ dependencies {
     implementation(project(":sdk:facade"))
     implementation(Config.Dependencies.Shared.Concurrency.coroutinesCore)
     implementation (Config.Dependencies.Shared.Concurrency.coroutinesAndroid)
+    implementation ("com.badoo.reaktive:reaktive-android:1.1.22")
 }
 
 android {
@@ -24,7 +25,11 @@ android {
         versionName = "1.0"
     }
     buildTypes {
+
         getByName("release") {
+            isMinifyEnabled = false
+        }
+        getByName("debug") {
             isMinifyEnabled = false
         }
     }

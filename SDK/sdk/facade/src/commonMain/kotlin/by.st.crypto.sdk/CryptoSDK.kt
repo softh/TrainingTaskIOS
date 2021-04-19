@@ -33,6 +33,18 @@ class CryptoSDK(private val dataRepository: CryptoCurrencyRepository) : CryptoSD
             }
         })
     }
+
+    override suspend fun convert(sourceCurrencyId: Int, targetCurrencyId: Int): Double {
+        val allCurrencies = getCryptoCurrenciesList()
+        val sourceCurrency = allCurrencies.find { it.id == sourceCurrencyId }
+        val targetCurrency = allCurrencies.find { it.id == targetCurrencyId }
+
+        if(sourceCurrency == null || targetCurrency == null) {
+            throw SDKException("One or more parameters isn't initialize")
+        }
+
+        return sourceCurrency.currentPrice / targetCurrency.currentPrice
+    }
 }
 
 /**

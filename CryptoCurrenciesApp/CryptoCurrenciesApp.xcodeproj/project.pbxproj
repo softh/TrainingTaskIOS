@@ -17,14 +17,13 @@
 		BF0FD68E25BA00A8006D4E81 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF0FD68D25BA00A8006D4E81 /* Localizable.strings */; };
 		BF2512A42624EB35000B4575 /* CryptoCurrencySDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2512A32624EB35000B4575 /* CryptoCurrencySDK.xcframework */; };
 		BF2512A52624EB35000B4575 /* CryptoCurrencySDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF2512A32624EB35000B4575 /* CryptoCurrencySDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF2512AF2624EBB9000B4575 /* FlowCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2512AE2624EBB9000B4575 /* FlowCollector.swift */; };
 		BF426E5525E41BB9003D04F6 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF426E5325E41BB9003D04F6 /* CurrencyTableViewCell.swift */; };
 		BF426E5625E41BB9003D04F6 /* CurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF426E5425E41BB9003D04F6 /* CurrencyTableViewCell.xib */; };
 		BF426E5B25E43067003D04F6 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF426E5925E43067003D04F6 /* DetailsViewController.swift */; };
 		BF426E5C25E43067003D04F6 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF426E5A25E43067003D04F6 /* DetailsViewController.xib */; };
 		BF505D8125DAF1A2006E8FF6 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF505D8025DAF1A2006E8FF6 /* ProgressView.swift */; };
 		BF505D9425DB34E5006E8FF6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF505D9325DB34E5006E8FF6 /* String+.swift */; };
-		BF71CF172620FC10000929E0 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BF71CF172620FC10000929E0 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF71CF1A2620FCBC000929E0 /* CryptoSDKRxWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF71CF192620FCBC000929E0 /* CryptoSDKRxWrapper.swift */; };
 		BFB5CD1725D1B7A70082FBE8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB5CD1625D1B7A70082FBE8 /* Date+.swift */; };
 		BFB5CD1B25D5AFF80082FBE8 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB5CD1A25D5AFF80082FBE8 /* BaseViewModel.swift */; };
@@ -49,7 +48,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BF2512A52624EB35000B4575 /* CryptoCurrencySDK.xcframework in Embed Frameworks */,
-				BF71CF172620FC10000929E0 /* BuildFile in Embed Frameworks */,
+				BF71CF172620FC10000929E0 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,7 +69,6 @@
 		BF0FD68925B9FECE006D4E81 /* HostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HostViewController.xib; sourceTree = "<group>"; };
 		BF0FD68D25BA00A8006D4E81 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		BF2512A32624EB35000B4575 /* CryptoCurrencySDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CryptoCurrencySDK.xcframework; path = ../SDK/build/CryptoCurrencySDK.xcframework; sourceTree = "<group>"; };
-		BF2512AE2624EBB9000B4575 /* FlowCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCollector.swift; sourceTree = "<group>"; };
 		BF426E5325E41BB9003D04F6 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		BF426E5425E41BB9003D04F6 /* CurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyTableViewCell.xib; sourceTree = "<group>"; };
 		BF426E5925E43067003D04F6 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 				BF505D8025DAF1A2006E8FF6 /* ProgressView.swift */,
 				BF505D9325DB34E5006E8FF6 /* String+.swift */,
 				F2719AE611848B1E7CBFA33D /* Double+.swift */,
-				BF2512AE2624EBB9000B4575 /* FlowCollector.swift */,
 				BFD201D926264BA7001B2179 /* SDKProvider.swift */,
 			);
 			path = Tools;
@@ -367,7 +364,6 @@
 				BFD2019D26261CDF001B2179 /* CryptoCurrencyListViewModel.swift in Sources */,
 				BFD201592625E74B001B2179 /* InitializationViewController.swift in Sources */,
 				BF505D9425DB34E5006E8FF6 /* String+.swift in Sources */,
-				BF2512AF2624EBB9000B4575 /* FlowCollector.swift in Sources */,
 				BF426E5B25E43067003D04F6 /* DetailsViewController.swift in Sources */,
 				BFB5CD1B25D5AFF80082FBE8 /* BaseViewModel.swift in Sources */,
 				BF0FD65C25B9F34D006D4E81 /* AppDelegate.swift in Sources */,

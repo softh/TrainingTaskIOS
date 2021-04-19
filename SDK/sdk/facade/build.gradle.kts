@@ -1,5 +1,5 @@
 val libraryName = "CryptoCurrencySDK"
-val libraryVersion = "1.0.0"
+val libraryVersion = "1.0.1"
 
 plugins {
     plugin(Config.Dependencies.Plugins.androidLibrary)

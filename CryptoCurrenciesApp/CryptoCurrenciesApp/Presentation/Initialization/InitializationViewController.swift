@@ -40,8 +40,6 @@ class InitializationViewController: UIViewController {
     }
     
     private func navigateToNextScreen() {
-        let window = view.window
-        let windowScene = view.window?.windowScene
         let sceneDelegate = view.window?.windowScene?.delegate
         if let delegate = sceneDelegate {
             let castedDelegate = delegate as! SceneDelegate

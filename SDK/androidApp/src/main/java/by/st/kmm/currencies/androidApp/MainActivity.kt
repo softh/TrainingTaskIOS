@@ -41,7 +41,11 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
 
-            sdk.getCryptoCurrenciesList(20).subscribe(isThreadLocal = false, onSuccess = {}, onError = {})
+            sdk.getCryptoCurrenciesList(20).subscribe(isThreadLocal = false, onSuccess = { result ->
+                val a = 1
+            }, onError = { error ->
+                val c = 0
+            })
 
 //            GlobalScope.launch(Dispatchers.Main) {
 //                sdk.startInitialization(object : InitializationProgressListener {

@@ -23,49 +23,19 @@ class CoinCapCryptoCurrencyRepository(
 ) : CryptoCurrencyRepository {
 
     override fun getCryptoCurrenciesList(countOfItems: Int): Single<List<CryptoCurrencyModel>> {
-        return concat(localSource.getCryptoCurrencies(countOfItems), remoteSource.getCryptoCurrencies(countOfItems)).firstOrError(IllegalStateException()).map { it }
-//       return localSource.getCryptoCurrencies(countOfItems)
-//           .flatMap { localList ->
-//               if(localList.isNullOrEmpty()) {
-//                   remoteSource.getCryptoCurrencies(countOfItems).doOnAfterSuccess { response ->
-//                       checkResponse(response)
-//                       response.data?.let {
-//                           localSource.saveCryptoCurrencies(it)
-//                       }
-//                   }.map { it.data.toDomainModel() }
-//               } else {
-//                   singleOf(localList).map { it.toDomainModel() }
-//               }
-//           }
-
-//            .flatMap { localData ->
-//                if (localData.isNullOrEmpty()) {
-//                    remoteSource.getCryptoCurrencies(countOfItems)
-//                        .doOnAfterSuccess {
-//                            checkResponse(it)
-//                            it.data?.let { data ->
-//                                localSource.saveCryptoCurrencies(data)
-//                            }
-//                        }
-//                        .map {
-//                            it.data?.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) }
-//                                ?: listOf()
-//                        }
-//                } else {
-//                    singleOf(localData.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) })
+        return remoteSource.getCryptoCurrencies(countOfItems).doOnAfterSuccess { checkResponse(it) }.map { it.data.toDomainModel() }
+//        return concat(
+//            localSource.getCryptoCurrencies(countOfItems),
+//            remoteSource.getCryptoCurrencies(countOfItems)
+//                .doOnAfterSuccess { response ->
+//                    checkResponse(response)
+//                    response.data?.let { data ->
+//                        localSource.saveCryptoCurrencies(data) //todo without rx inside
+//                    }
 //                }
-//            }
-//        return remoteSource.getCryptoCurrencies(countOfItems)
-//            .doOnAfterSuccess {
-//                checkResponse(it)
-//                it.data?.let { data ->
-//                    localSource.saveCryptoCurrencies(data)
-//                }
-//            }
-//            .map {
-//                it.data?.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) }
-//                    ?: listOf()
-//            }
+//                .map { it.data!! })
+//            .firstOrDefault(listOf())
+//            .map { it.toDomainModel() }
     }
 
 

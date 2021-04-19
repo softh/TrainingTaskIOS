@@ -6,6 +6,7 @@ import by.st.kmm.sdk.data.currency.source.local.CryptoCurrencyLocalDataSource
 import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.completable.completable
 import com.badoo.reaktive.single.Single
+import com.badoo.reaktive.single.single
 import com.badoo.reaktive.single.singleFromFunction
 import kotlinx.datetime.Clock
 import kotlin.native.concurrent.SharedImmutable
@@ -17,12 +18,12 @@ private const val DEFAULT_CACHE_LIFETIME: Long = 10 * 60 * 1000
  */
 class CryptoCurrencyMemorySource(cacheLifetime: Long = DEFAULT_CACHE_LIFETIME) : CryptoCurrencyBaseLocalDataSource(cacheLifetime) {
 
-    private val cacheBuffer = mutableListOf<CryptoCurrencyDto>()
+    private var cacheBuffer: List<CryptoCurrencyDto>? = null
 
-    override fun getCryptoCurrencies(countOfElements: Int): Single<List<CryptoCurrencyDto>> {
-        return singleFromFunction {
+    override fun getCryptoCurrencies(countOfElements: Int): Single<List<CryptoCurrencyDto>?> {
+        return single {
             if(isCacheExpired()) {
-                this.cacheBuffer.clear()
+                this.cacheBuffer = null
             }
             cacheBuffer
         }
@@ -30,8 +31,8 @@ class CryptoCurrencyMemorySource(cacheLifetime: Long = DEFAULT_CACHE_LIFETIME) :
 
     override fun saveCryptoCurrencies(items: List<CryptoCurrencyDto>) : Completable {
         return completable {
-            this.cacheBuffer.clear()
-            this.cacheBuffer.addAll(items)
+            this.cacheBuffer = null
+            this.cacheBuffer = items
             dropLastUpdatedTime()
         }
     }

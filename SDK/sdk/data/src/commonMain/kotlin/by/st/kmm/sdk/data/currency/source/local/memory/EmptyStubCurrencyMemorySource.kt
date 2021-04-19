@@ -6,10 +6,11 @@ import com.badoo.reaktive.completable.Completable
 import com.badoo.reaktive.completable.completable
 import com.badoo.reaktive.single.Single
 import com.badoo.reaktive.single.single
+import com.badoo.reaktive.single.singleOf
 
 class EmptyStubCurrencyMemorySource : CryptoCurrencyLocalDataSource {
-    override fun getCryptoCurrencies(countOfElements: Int): Single<List<CryptoCurrencyDto>> {
-        return single { listOf<CryptoCurrencyDto>() }
+    override fun getCryptoCurrencies(countOfElements: Int): Single<List<CryptoCurrencyDto>?> {
+        return singleOf(null)
     }
 
     override fun saveCryptoCurrencies(items: List<CryptoCurrencyDto>): Completable {

@@ -11,7 +11,7 @@ private const val DEFAULT_COUNT_OF_ITEMS = 200
  */
 interface CryptoCurrencyLocalDataSource {
 
-    fun getCryptoCurrencies(countOfElements: Int = DEFAULT_COUNT_OF_ITEMS) : Single<List<CryptoCurrencyDto>>
+    fun getCryptoCurrencies(countOfElements: Int = DEFAULT_COUNT_OF_ITEMS) : Single<List<CryptoCurrencyDto>?>
 
     fun saveCryptoCurrencies(items: List<CryptoCurrencyDto>) : Completable
 }

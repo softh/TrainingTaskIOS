@@ -49,10 +49,10 @@ class InitializationViewController: UIViewController {
         }
         
         do {
-            try SDKProvider.getSDK().getCryptoCurrenciesList(countOfItems_: 20).subscribe(isThreadLocal: false, onError: errors, onSuccess: success)
+            try SDKProvider.getSDK().getCryptoCurrenciesList(countOfItems_: 20).subscribe(isThreadLocal: true, onError: errors, onSuccess: success)
             
         } catch {
-            
+            print("Неожиданная ошибка: \(error).")
         }
         
        

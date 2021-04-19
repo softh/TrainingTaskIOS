@@ -12,6 +12,7 @@ dependencies {
     implementation(project(":sdk:facade"))
     implementation(Config.Dependencies.Shared.Concurrency.coroutinesCore)
     implementation (Config.Dependencies.Shared.Concurrency.coroutinesAndroid)
+    implementation ("com.badoo.reaktive:reaktive:1.1.22")
     implementation ("com.badoo.reaktive:reaktive-android:1.1.22")
 }
 

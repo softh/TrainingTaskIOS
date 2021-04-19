@@ -33,8 +33,6 @@ class CryptoSDK(private val dataRepository: CryptoCurrencyRepository) : CryptoSD
 
     override fun getCryptoCurrenciesList(countOfItems: Int): SingleWrapper<List<CryptoCurrencyModel>> {
         return dataRepository.getCryptoCurrenciesList(countOfItems)
-            .subscribeOn(ioScheduler)
-            .observeOn(mainScheduler)
             .wrap()
     }
 

@@ -28,7 +28,7 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:1.4.4")
                 implementation("com.badoo.reaktive:reaktive:1.1.22")
                 implementation("com.badoo.reaktive:reaktive-annotations:1.1.22")
-                implementation("com.badoo.reaktive:coroutines-interop:1.1.22")
+                implementation("com.badoo.reaktive:coroutines-interop:1.1.22-nmtc")
             }
         }
         val androidMain by getting {

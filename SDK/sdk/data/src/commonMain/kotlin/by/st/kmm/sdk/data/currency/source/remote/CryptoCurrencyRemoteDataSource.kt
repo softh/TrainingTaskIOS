@@ -13,7 +13,7 @@ interface CryptoCurrencyRemoteDataSource {
 
     fun getCryptoCurrencies(countOfElements: Int): Single<BaseListResponse<CryptoCurrencyDto>>
 
-    fun getCurrenciesLogo(currencyIds: IntArray): Single<BaseMapResponse<CurrencyLogoDto>>
+    fun getCurrencyLogo(currencyId: Int): Single<BaseMapResponse<CurrencyLogoDto>>
 
-    fun loadCurrencyLogo(logoUrl: String) : Single<ByteArray>
+    fun downloadCurrencyLogo(logoUrl: String) : Single<ByteArray>
 }

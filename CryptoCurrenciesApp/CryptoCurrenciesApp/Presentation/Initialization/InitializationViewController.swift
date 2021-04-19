@@ -38,10 +38,18 @@ class InitializationViewController: UIViewController {
             //navigateToNextScreen()
         }
         
+        let success: (NSArray) -> () = { calue in
+            print(calue)
+            let a = 0
+        }
+        
+        let errors: (KotlinThrowable) -> () = { error in
+            print(error.message)
+            let c = 0
+        }
+        
         do {
-            try SDKProvider.getSDK().getCryptoCurrenciesList(countOfItems_: 20).subscribe(isThreadLocal: true) { result in
-                let a = 0
-            }
+            try SDKProvider.getSDK().getCryptoCurrenciesList(countOfItems_: 20).subscribe(isThreadLocal: false, onError: errors, onSuccess: success)
             
         } catch {
             

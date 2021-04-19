@@ -1,6 +1,7 @@
 package by.st.kmm.sdk.data.currency.repository
 
 import by.st.kmm.sdk.data.cache.LogoStorageDatabase
+import by.st.kmm.sdk.data.currency.CryptoCurrencyDto
 import by.st.kmm.sdk.data.currency.source.local.CryptoCurrencyLocalDataSource
 import by.st.kmm.sdk.data.currency.source.local.memory.EmptyStubCurrencyMemorySource
 import by.st.kmm.sdk.data.currency.source.remote.CryptoCurrencyRemoteDataSource
@@ -9,8 +10,7 @@ import by.st.kmm.sdk.data.response.BaseListResponse
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyModel
 import by.st.kmm.sdk.domain.currency.CryptoCurrencyRepository
 import by.st.kmm.sdk.domain.currency.RepositoryException
-import com.badoo.reaktive.observable.Observable
-import com.badoo.reaktive.observable.observable
+import com.badoo.reaktive.observable.*
 import com.badoo.reaktive.single.*
 
 /**
@@ -23,24 +23,49 @@ class CoinCapCryptoCurrencyRepository(
 ) : CryptoCurrencyRepository {
 
     override fun getCryptoCurrenciesList(countOfItems: Int): Single<List<CryptoCurrencyModel>> {
-        return localSource.getCryptoCurrencies(countOfItems)
-            .flatMap { localData ->
-                if (localData.isNullOrEmpty()) {
-                    remoteSource.getCryptoCurrencies(countOfItems)
-                        .doOnAfterSuccess {
-                            checkResponse(it)
-                            it.data?.let { data ->
-                                localSource.saveCryptoCurrencies(data)
-                            }
-                        }
-                        .map {
-                            it.data?.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) }
-                                ?: listOf()
-                        }
-                } else {
-                    singleOf(localData.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) })
-                }
-            }
+        return concat(localSource.getCryptoCurrencies(countOfItems), remoteSource.getCryptoCurrencies(countOfItems)).firstOrError(IllegalStateException()).map { it }
+//       return localSource.getCryptoCurrencies(countOfItems)
+//           .flatMap { localList ->
+//               if(localList.isNullOrEmpty()) {
+//                   remoteSource.getCryptoCurrencies(countOfItems).doOnAfterSuccess { response ->
+//                       checkResponse(response)
+//                       response.data?.let {
+//                           localSource.saveCryptoCurrencies(it)
+//                       }
+//                   }.map { it.data.toDomainModel() }
+//               } else {
+//                   singleOf(localList).map { it.toDomainModel() }
+//               }
+//           }
+
+//            .flatMap { localData ->
+//                if (localData.isNullOrEmpty()) {
+//                    remoteSource.getCryptoCurrencies(countOfItems)
+//                        .doOnAfterSuccess {
+//                            checkResponse(it)
+//                            it.data?.let { data ->
+//                                localSource.saveCryptoCurrencies(data)
+//                            }
+//                        }
+//                        .map {
+//                            it.data?.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) }
+//                                ?: listOf()
+//                        }
+//                } else {
+//                    singleOf(localData.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) })
+//                }
+//            }
+//        return remoteSource.getCryptoCurrencies(countOfItems)
+//            .doOnAfterSuccess {
+//                checkResponse(it)
+//                it.data?.let { data ->
+//                    localSource.saveCryptoCurrencies(data)
+//                }
+//            }
+//            .map {
+//                it.data?.map { dto -> dto.toDomainModel(logoStorage.getLogoByCurrencyId(dto.id)?.logoPayload) }
+//                    ?: listOf()
+//            }
     }
 
 

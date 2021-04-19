@@ -6,7 +6,6 @@ import by.st.kmm.sdk.data.currency.CurrencyLogoDto
 import by.st.kmm.sdk.data.response.BaseListResponse
 import by.st.kmm.sdk.data.response.BaseMapResponse
 import by.st.kmm.sdk.tools.concurrency.BackgroundDispatcher
-import by.st.kmm.sdk.tools.concurrency.MainDispatcher
 import by.st.kmm.sdk.tools.concurrency.RxExtension
 import com.badoo.reaktive.single.Single
 import io.ktor.client.request.*
@@ -34,33 +33,29 @@ class CryptoCurrencyNetworkSource(
     ): Single<BaseListResponse<CryptoCurrencyDto>> {
         return RxExtension.singleFromCoroutineUnsafe(BackgroundDispatcher) {
             getHttpClient().use {
-                val result = it.get {
+                it.get {
                     url("$apiEndpoint/cryptocurrency/listings/latest")
                     parameter("limit", countOfElements)
                 } as BaseListResponse<CryptoCurrencyDto>
-
-                result
             }
         }
     }
 
-    override fun getCurrenciesLogo(
-        currencyIds: IntArray,
+    override fun getCurrencyLogo(
+        currencyId: Int,
     ): Single<BaseMapResponse<CurrencyLogoDto>> {
         return RxExtension.singleFromCoroutineUnsafe(BackgroundDispatcher) {
             getHttpClient().use {
-                val result = it.get {
+                it.get {
                     url("$apiEndpoint/cryptocurrency/info")
                     parameter("aux", "logo")
-                    parameter("id", currencyIds.joinToString(separator = ","))
+                    parameter("id", currencyId)
                 } as BaseMapResponse<CurrencyLogoDto>
-
-                result
             }
         }
     }
 
-    override fun loadCurrencyLogo(logoUrl: String) : Single<ByteArray>{
+    override fun downloadCurrencyLogo(logoUrl: String) : Single<ByteArray>{
         return RxExtension.singleFromCoroutineUnsafe(BackgroundDispatcher) {
             getHttpClient().use {
                 val response: ByteArray = it.get {

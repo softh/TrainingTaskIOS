@@ -42,7 +42,7 @@ class SDKProvider {
                 .withApiEndpoint(apiEndpoint: "https://pro-api.coinmarketcap.com/v1")
                 .withApiToken(apiToken: "3032f753-b744-4448-9cf1-bf6ae80dbb7c")
                 .withDatabaseDriverFactory(databaseDriverFactory: DatabaseDriverFactory())
-                .enableLogging(enable: true)
+                .enableLogging(enable: false)
                 .withCachingType(cachingType: .none)
                 .withCacheLifeTime(milliseconds: cacheLifetime)
                 .build()
